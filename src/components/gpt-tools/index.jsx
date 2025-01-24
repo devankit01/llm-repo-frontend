@@ -12,7 +12,6 @@ const GPTTools = () => {
   const { gpt, loading, searchText, filteredData } = useSelector(
     (state) => state.filter
   );
-  // const [gptToolList, setGPTToolList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -24,11 +23,13 @@ const GPTTools = () => {
     setCurrentPage(page);
   };
 
-  // Slice data for the current page
+  // Calculate the indices for slicing
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  // Always slice the data
   const currentPageData =
-    gpt === filteredData && searchText === ""
-      ? gpt
+    searchText === ""
+      ? gpt.slice(startIndex, startIndex + ITEMS_PER_PAGE)
       : filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
@@ -83,7 +84,10 @@ const GPTTools = () => {
       {!loading && gpt.length > ITEMS_PER_PAGE && (
         <div className="pagination flex justify-center mt-6">
           <Pagination
-            count={Math.ceil(gpt.length / ITEMS_PER_PAGE)}
+            count={Math.ceil(
+              (searchText === "" ? gpt.length : filteredData.length) /
+                ITEMS_PER_PAGE
+            )}
             page={currentPage}
             onChange={handlePageChange}
             color="primary"
