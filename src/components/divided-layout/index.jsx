@@ -1,6 +1,6 @@
 import React from "react";
 import { Filter } from "../filter";
-import { Footer } from "../common";
+import { Footer, ScrollToTop } from "../common";
 
 const DividedLayout = ({ children }) => {
   return (
@@ -10,6 +10,7 @@ const DividedLayout = ({ children }) => {
           <Filter />
         </div>
         <div className="body lg:w-4/5 w-full h-full overflow-y-auto lg:px-10 md:px-8 px-4 pt-16">
+          <ScrollToTop />
           {children}
           <Footer />
         </div>

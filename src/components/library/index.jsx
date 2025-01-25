@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { LibraryCard } from "../library-card";
 import { Filter } from "../filter";
 import { Pagination } from "@mui/material";
-import { fetchLLMLibraries } from "../../redux/slice/filterSlice";
+import {
+  fetchLLMLibraries,
+  librarySearch,
+} from "../../redux/slice/filterSlice";
 
 const ITEMS_PER_PAGE = 12; // Number of items per page
 
@@ -39,8 +42,12 @@ const Library = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchLLMLibraries()); // Fetch libraries using Redux thunk
-  }, [dispatch]);
+    if (searchText.trim()) {
+      dispatch(librarySearch(searchText));
+    } else {
+      dispatch(fetchLLMLibraries()); // Fetch libraries using Redux thunk
+    }
+  }, [dispatch, searchText]);
 
   // Handle page change
   const handlePageChange = (_, page) => {

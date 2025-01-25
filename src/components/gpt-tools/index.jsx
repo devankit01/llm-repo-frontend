@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { GPTCard } from "../gptCard";
 import { Pagination, Skeleton } from "@mui/material";
 import { Filter } from "../filter";
-import { fetchGPTTools } from "../../redux/slice/filterSlice";
+import { fetchGPTTools, gptSearch } from "../../redux/slice/filterSlice";
 
 const ITEMS_PER_PAGE = 12; // Adjust the number of items per page
 
@@ -15,8 +15,13 @@ const GPTTools = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchGPTTools()); // Fetch GPT tools from Redux
-  }, [dispatch]);
+    if (searchText.trim()) {
+      dispatch(gptSearch(searchText));
+      // console.log(searchText);
+    } else {
+      dispatch(fetchGPTTools());
+    }
+  }, [dispatch, searchText]);
 
   // Handle page change
   const handlePageChange = (_, page) => {

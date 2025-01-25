@@ -74,7 +74,6 @@ const LLMTools = () => {
   ).slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const limitedLLMTools = llmtool.slice(0, 8);
-  console.log(filteredData);
 
   return (
     <>

@@ -21,7 +21,7 @@ const Filter = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setSearchText(enteredSearchText));
+    dispatch(setSearchText(enteredSearchText.toLowerCase()));
   };
 
   const handleClearAll = () => {
@@ -175,7 +175,7 @@ const Filter = () => {
                 {(showAllTags ? tags : tags.slice(0, 10)).map((tag) => (
                   <li
                     key={tag.id}
-                    className="border border-gray-600 px-3 py-1 rounded-md text-sm cursor-pointer hover:text-[#7F89FF] hover:bg-[#7F89FF]/5 hover:border-[#7F89FF] ease-in-out duration-200 transition-all"
+                    className="border border-gray-600 px-3 py-1 rounded-md text-xs cursor-pointer hover:text-[#7F89FF] hover:bg-[#7F89FF]/5 hover:border-[#7F89FF] ease-in-out duration-200 transition-all"
                   >
                     {tag?.name?.toUpperCase()}
                   </li>

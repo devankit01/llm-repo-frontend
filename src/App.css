@@ -10,9 +10,11 @@
   box-sizing: border-box;
   font-family: "Poppins", serif;
   color: #fff;
+  scroll-behavior: smooth !important;
 }
 body,
 html {
+  scroll-behavior: smooth !important;
   background-color: #11111e;
   overflow-x: hidden;
 }
@@ -21,16 +23,16 @@ html {
   width: 6px;
   height: 6px;
 }
- 
+
 ::-webkit-scrollbar-track {
   background: #11111e;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #1d1f2b;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7F89FF;
+  background: #7f89ff;
 }

@@ -12,12 +12,14 @@ import {
 import { Layout, Library } from "./components";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { ScrollToTop } from "./components/common";
 
 function App() {
   return (
     <>
       <Provider store={store}>
         <BrowserRouter>
+          <ScrollToTop />
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />

@@ -17,7 +17,7 @@ const LibraryCard = ({ library }) => {
     return null;
   }
 
-  const tagsArray = library.tags ? library.tags.split(",") : [];
+  const tagsArray = library.tags ? library.tags.split(";") : [];
 
   const openModal = () => {
     // Set the content of the modal dynamically based on the card clicked
