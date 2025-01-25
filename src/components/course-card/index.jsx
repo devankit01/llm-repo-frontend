@@ -55,7 +55,7 @@ const CourseCard = ({ course }) => {
               href={course.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="header-cont flex items-center mb-2.5 w-max"
+              className="header-cont flex items-center mb-2.5 w-[calc(100%-3rem)]"
               onClick={(e) => e.stopPropagation()}
             >
               <h1 className="text-lg font-semibold text-white h-20 line-clamp-3">
