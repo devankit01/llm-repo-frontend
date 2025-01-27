@@ -11,15 +11,15 @@ import {
 } from "./pages";
 import { Layout, Library } from "./components";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import { ScrollToTop } from "./components/common";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   return (
     <>
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <ScrollToTop />
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -33,6 +33,7 @@ function App() {
             </Routes>
           </Layout>
         </BrowserRouter>
+        </PersistGate>
       </Provider>
     </>
   );

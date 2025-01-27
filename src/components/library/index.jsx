@@ -35,9 +35,8 @@ const LibraryCardSkeleton = () => {
 
 const Library = () => {
   const dispatch = useDispatch();
-  const { filteredData, loading, error, llmlibrary, searchText } = useSelector(
-    (state) => state.filter
-  );
+  const { filteredData, loading, error, llmlibrary, searchText, tags } =
+    useSelector((state) => state.filter);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -54,11 +53,25 @@ const Library = () => {
     setCurrentPage(page);
   };
 
-  // Slice data for the current page
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentPageData = (
-    llmlibrary === filteredData && searchText === "" ? llmlibrary : filteredData
-  ).slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const currentPageData = (() => {
+    if (tags.length > 0) {
+      const filteredByTags = (
+        searchText === "" ? llmlibrary : filteredData
+      ).filter((tool) => {
+        const toolTags = tool.tags
+          ? tool.tags.split(";").map((tag) => tag.trim().toLowerCase())
+          : [];
+        return toolTags.some((tag) => tags.includes(tag.trim()));
+      });
+      return filteredByTags.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    } else if (searchText.trim() && tags.length === 0) {
+      return filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    } else {
+      return llmlibrary.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    }
+  })();
 
   return (
     <section className="mb-14">
@@ -76,7 +89,6 @@ const Library = () => {
       </div>
       <div className="library-cards grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 w-full">
         {loading ? (
-          // While loading, display skeleton cards
           Array(8)
             .fill(0)
             .map((_, index) => (
@@ -95,10 +107,10 @@ const Library = () => {
         )}
       </div>
       {/* Pagination */}
-      {!loading && filteredData.length > ITEMS_PER_PAGE && (
+      {llmlibrary.length > ITEMS_PER_PAGE && (
         <div className="pagination flex justify-center mt-6">
           <Pagination
-            count={Math.ceil(filteredData.length / ITEMS_PER_PAGE)}
+            count={Math.ceil(llmlibrary.length / ITEMS_PER_PAGE)}
             page={currentPage}
             onChange={handlePageChange}
             color="primary"

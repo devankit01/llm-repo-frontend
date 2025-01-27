@@ -5,11 +5,11 @@ import { Pagination, Skeleton } from "@mui/material";
 import { Filter } from "../filter";
 import { fetchGPTTools, gptSearch } from "../../redux/slice/filterSlice";
 
-const ITEMS_PER_PAGE = 12; // Adjust the number of items per page
+const ITEMS_PER_PAGE = 12; 
 
 const GPTTools = () => {
   const dispatch = useDispatch();
-  const { gpt, loading, searchText, filteredData } = useSelector(
+  const { gpt, loading, searchText, filteredData,tags } = useSelector(
     (state) => state.filter
   );
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,25 +17,39 @@ const GPTTools = () => {
   useEffect(() => {
     if (searchText.trim()) {
       dispatch(gptSearch(searchText));
-      // console.log(searchText);
     } else {
       dispatch(fetchGPTTools());
     }
   }, [dispatch, searchText]);
 
-  // Handle page change
   const handlePageChange = (_, page) => {
     setCurrentPage(page);
   };
 
-  // Calculate the indices for slicing
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
 
-  // Always slice the data
-  const currentPageData =
-    searchText === ""
-      ? gpt.slice(startIndex, startIndex + ITEMS_PER_PAGE)
-      : filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  // const currentPageData =
+  //   searchText === ""
+  //     ? gpt.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+  //     : filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const currentPageData = (() => {
+    if (tags.length > 0) {
+      const filteredByTags = (
+        searchText === "" ? gpt : filteredData
+      ).filter((tool) => {
+        const toolTags = tool.category
+          ? tool.category.split(";").map((tag) => tag.trim().toLowerCase())
+          : [];
+        return toolTags.some((tag) => tags.includes(tag.trim()));
+      });
+      return filteredByTags.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    } else if (searchText.trim() && tags.length === 0) {
+      return filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    } else {
+      return gpt.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    }
+  })();
 
   return (
     <section>
@@ -59,7 +73,7 @@ const GPTTools = () => {
                 variant="rectangular"
                 width="100%"
                 height={200}
-                sx={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }} // Lighter skeleton for darker background
+                sx={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
               />
               <Skeleton
                 variant="text"
@@ -85,7 +99,6 @@ const GPTTools = () => {
           <div className="text-gray-500 w-full">No GPT Tools available.</div>
         )}
       </div>
-      {/* Pagination */}
       {!loading && gpt.length > ITEMS_PER_PAGE && (
         <div className="pagination flex justify-center mt-6">
           <Pagination
@@ -98,13 +111,13 @@ const GPTTools = () => {
             color="primary"
             sx={{
               "& .MuiPaginationItem-root": {
-                color: "white", // Light color for text
+                color: "white", 
               },
               "& .Mui-selected": {
-                backgroundColor: "rgba(255, 255, 255, 0.2) !important", // Light background on selected page
+                backgroundColor: "rgba(255, 255, 255, 0.2) !important", 
               },
               "& .MuiPaginationItem-ellipsis": {
-                color: "rgba(255, 255, 255, 0.6)", // Lighter color for ellipsis
+                color: "rgba(255, 255, 255, 0.6)", 
               },
             }}
           />

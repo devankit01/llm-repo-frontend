@@ -84,6 +84,7 @@ const filterSlice = createSlice({
     searchText: "",
     loading: false,
     error: null,
+    tags: [],
   },
   reducers: {
     setSearchText: (state, action) => {
@@ -109,6 +110,16 @@ const filterSlice = createSlice({
         return name.includes(query) || tag.includes(query);
       });
     },
+    setTag: (state, action) => {
+      const tagName = action.payload;
+      if (state.tags.includes(tagName)) {
+        state.tags = state.tags.filter((tag) => tag !== tagName);
+      } else if (tagName === "") {
+        state.tags = [];
+      } else {
+        state.tags.push(tagName);
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -120,7 +131,7 @@ const filterSlice = createSlice({
       .addCase(fetchLLMTools.fulfilled, (state, action) => {
         state.loading = false;
         state.llmtool = action.payload;
-        state.fetchedData = action.payload;
+        // state.fetchedData = action.payload;
         state.filteredData = action.payload;
       })
       .addCase(fetchLLMTools.rejected, (state, action) => {
@@ -136,7 +147,7 @@ const filterSlice = createSlice({
       .addCase(fetchGPTTools.fulfilled, (state, action) => {
         state.loading = false;
         state.gpt = action.payload;
-        state.fetchedData = action.payload;
+        // state.fetchedData = action.payload;
         state.filteredData = action.payload;
       })
       .addCase(fetchGPTTools.rejected, (state, action) => {
@@ -152,7 +163,7 @@ const filterSlice = createSlice({
       .addCase(fetchLLMLibraries.fulfilled, (state, action) => {
         state.loading = false;
         state.llmlibrary = action.payload;
-        state.fetchedData = action.payload;
+        // state.fetchedData = action.payload;
         state.filteredData = action.payload;
       })
       .addCase(fetchLLMLibraries.rejected, (state, action) => {
@@ -176,5 +187,6 @@ const filterSlice = createSlice({
   },
 });
 
-export const { setSearchText, gptSearch, librarySearch } = filterSlice.actions;
+export const { setSearchText, gptSearch, librarySearch, setTag } =
+  filterSlice.actions;
 export default filterSlice.reducer;

@@ -8,23 +8,28 @@ const Layout = ({ children }) => {
   return (
     <>
       <main className="flex flex-col min-h-screen">
+        {["/", "/llm-courses", "/llm-webinars", "/bookmarks"].includes(
+          location
+        ) ? (
+          <ScrollToTop />
+        ) : (
+          <></>
+        )}
         <Navbar />
         <div
           className={` ${
-            location === "/" ||
-            location === "/llm-courses" ||
-            location === "/llm-webinars" ||
-            location === "/bookmarks"
+            ["/", "/llm-courses", "/llm-webinars", "/bookmarks"].includes(
+              location
+            )
               ? "pt-20"
               : ""
           } flex`}
         >
           {children}
         </div>
-        {location === "/" ||
-        location === "/llm-courses" ||
-        location === "/llm-webinars" ||
-        location === "/bookmarks" ? (
+        {["/", "/llm-courses", "/llm-webinars", "/bookmarks"].includes(
+          location
+        ) ? (
           <Footer />
         ) : (
           <></>

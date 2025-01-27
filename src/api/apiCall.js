@@ -18,7 +18,7 @@ const handleError = (error) => {
 export const llmSearch = async (params) => {
   try {
     const response = await apiClient.post("/llm-search", params); // Pass params directly
-    console.log(response);
+    // console.log(response);
     return response.data;
   } catch (error) {
     handleError(error);
@@ -28,7 +28,7 @@ export const llmSearch = async (params) => {
 export const listLLMTools = async () => {
   try {
     const response = await apiClient.get("/list_tools/llm_tools");
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     handleError(error);
@@ -77,7 +77,7 @@ export const webinars = async () => {
 export const llmLibs = async () => {
   try {
     const response = await apiClient.get("/llm-libs");
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     handleError(error);

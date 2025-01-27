@@ -45,8 +45,7 @@ const LLMTools = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  // Redux state
-  const { loading, searchText, llmtool, filteredData } = useSelector(
+  const { loading, searchText, llmtool, filteredData, tags } = useSelector(
     (state) => state.filter
   );
 
@@ -54,24 +53,34 @@ const LLMTools = () => {
 
   useEffect(() => {
     if (searchText.trim()) {
-      // Trigger search if searchText is not empty
       dispatch(performLLMSearch(searchText));
     } else {
-      // Fetch all tools if no search query
       dispatch(fetchLLMTools());
     }
   }, [dispatch, searchText]);
 
-  // Handle page change
   const handlePageChange = (_, page) => {
     setCurrentPage(page);
   };
 
-  // Slice data for current page
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentPageData = (
-    llmtool === filteredData && searchText === "" ? llmtool : filteredData
-  ).slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const currentPageData = (() => {
+    if (tags.length > 0) {
+      const filteredByTags = (
+        searchText === "" ? llmtool : filteredData
+      ).filter((tool) => {
+        const toolTags = tool.tags
+          ? tool.tags.split(",").map((tag) => tag.trim().toLowerCase())
+          : [];
+        return toolTags.some((tag) => tags.includes(tag.trim()));
+      });
+      return filteredByTags.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    } else if (searchText.trim() && tags.length === 0) {
+      return filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    } else {
+      return llmtool.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    }
+  })();
 
   const limitedLLMTools = llmtool.slice(0, 8);
 
@@ -96,7 +105,7 @@ const LLMTools = () => {
         </div>
         <div className="llm-cards grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 w-full  md:mb-16 mb-8">
           {loading
-            ? Array(8) // Render 8 skeleton cards while loading
+            ? Array(8)
                 .fill(null)
                 .map((_, index) => (
                   <div className="col-span-1" key={index}>
@@ -115,33 +124,31 @@ const LLMTools = () => {
                 </div>
               ))}
         </div>
-        {!loading &&
-          llmtool.length > ITEMS_PER_PAGE &&
-          location.pathname !== "/" && searchText === "" && (
-            <div className="pagination flex justify-center mt-6">
-              <Pagination
-                count={Math.ceil(filteredData.length / ITEMS_PER_PAGE)}
-                page={currentPage}
-                onChange={handlePageChange}
-                color="primary"
-                sx={{
-                  "& .MuiPaginationItem-root": {
-                    color: "white", // Light color for text
-                  },
-                  "& .Mui-selected": {
-                    backgroundColor: "rgba(255, 255, 255, 0.2) !important", // Light background on selected page
-                  },
-                  "& .MuiPaginationItem-ellipsis": {
-                    color: "rgba(255, 255, 255, 0.6)", // Lighter color for ellipsis
-                  },
-                }}
-              />
-            </div>
-          )}
+        {llmtool.length > ITEMS_PER_PAGE && location.pathname !== "/" && (
+          <div className="pagination flex justify-center mt-6">
+            <Pagination
+              count={Math.ceil(llmtool.length / ITEMS_PER_PAGE)}
+              page={currentPage}
+              onChange={handlePageChange}
+              color="primary"
+              sx={{
+                "& .MuiPaginationItem-root": {
+                  color: "white",
+                },
+                "& .Mui-selected": {
+                  backgroundColor: "rgba(255, 255, 255, 0.2) !important",
+                },
+                "& .MuiPaginationItem-ellipsis": {
+                  color: "rgba(255, 255, 255, 0.6)",
+                },
+              }}
+            />
+          </div>
+        )}
         {location.pathname === "/" && (
           <div className="text-center">
             {loading ? (
-              <ButtonSkeleton /> // Show skeleton while loading
+              <ButtonSkeleton />
             ) : (
               <Link
                 to={"/llm-tools"}
