@@ -10,12 +10,14 @@ import {
 const Home = () => {
   return (
     <>
-      <section className="py-16 md:px-10 px-3 min-h-screen max-w-[100rem] mx-auto w-full">
+      <section className="min-h-screen max-w-[100rem] mx-auto w-full">
         <Banner />
-        <LLMTools />
-        <LibrarySection />
-        <CourseSection />
-        <WebinarSection />
+        <div className="py-16 md:px-10 px-3 ">
+          <LLMTools />
+          <LibrarySection />
+          <CourseSection />
+          <WebinarSection />
+        </div>
       </section>
     </>
   );
