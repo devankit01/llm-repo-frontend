@@ -2,14 +2,24 @@ import React, { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
 import { FaRegBookmark, FaBookmark, FaArrowRight } from "react-icons/fa";
 import { SiteWideModal } from "../modal";
+import { useDispatch, useSelector } from "react-redux";
+import { addBookmark, removeBookmark } from "../../redux/slice/bookmarkSlice";
 
 const Card = ({ tool }) => {
   const [bookmark, setBookmark] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
+  const dispatch = useDispatch();
+  const bookmarks = useSelector((state) => state.bookmarks.llmTools || []);
+
 
   const bookmarkHandler = (e) => {
-    e.stopPropagation(); // Stop the card click from opening the modal
+    e.stopPropagation();
+    if (bookmarks.some((i) => i.id === tool.id)) {
+      dispatch(removeBookmark({ category: "llmTools", itemId: tool.id }));
+    } else {
+      dispatch(addBookmark({ category: "llmTools", item: tool }));
+    }
     setBookmark(!bookmark);
   };
 
@@ -20,7 +30,6 @@ const Card = ({ tool }) => {
   const tagsArray = tool.tags ? tool.tags.split(",") : [];
 
   const openModal = () => {
-    // Set the content of the modal dynamically based on the card clicked
     setModalContent(
       <div>
         <h2 className="text-lg font-bold mb-4">{tool.source}</h2>
@@ -29,7 +38,7 @@ const Card = ({ tool }) => {
           {tagsArray.map((tag, index) => (
             <span
               key={index}
-              className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-xs px-2 py-1 rounded-md"
+              className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-xs px-2 py-1 rounded-md uppercase"
             >
               {tag.trim()}
             </span>
@@ -53,9 +62,8 @@ const Card = ({ tool }) => {
       {/* Card */}
       <div
         className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[19rem] relative overflow-hidden group cursor-pointer"
-        onClick={openModal} // Open the modal with updated content
+        onClick={openModal} 
       >
-        {/* Bookmark Button */}
         <div className="absolute w-full flex justify-between items-center top-3 px-3">
           <span className="text-xs font-semibold text-[#7F89FF]">
             {tool.is_sponsor ? "SPONSORED" : ""}
@@ -102,7 +110,7 @@ const Card = ({ tool }) => {
             {tagsArray.map((tag, index) => (
               <span
                 key={index}
-                className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md"
+                className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md uppercase"
               >
                 {tag.trim()}
               </span>

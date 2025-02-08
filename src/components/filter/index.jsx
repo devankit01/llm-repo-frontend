@@ -57,7 +57,9 @@ const Filter = () => {
   console.log(tagList);
 
   return (
-    <section className="bg-[#202330] py-8 px-5 lg:h-[88.5vh] lg:overflow-y-scroll w-full lg:rounded-none rounded-xl">
+    <section
+      className={`bg-[#202330] py-8 px-5 lg:h-[calc(100vh-80px)] lg:overflow-y-scroll w-full lg:rounded-none rounded-xl`}
+    >
       <div className="">
         <form
           className="search flex items-center relative mb-5"

@@ -9,7 +9,7 @@ const Banner = () => {
           <Meteors number={60} />
         </div>
         <div className="flex flex-col items-center justify-center px-4 absolute z-10">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white"></h1>
+          {/* <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white"></h1> */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-[#7F89FF] font-semibold text-center md:mb-5 mb-1">
             LLM Repo
           </h2>

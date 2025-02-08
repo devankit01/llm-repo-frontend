@@ -1,20 +1,40 @@
 import { configureStore } from "@reduxjs/toolkit";
-import filterReducer from "./slice/filterSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import filterReducer from "./slice/filterSlice";
+import bookmarkReducer from "./slice/bookmarkSlice";
 
-const persistConfig = {
-  key: "root",
+const bookmarkPersistConfig = {
+  key: "bookmarks",
   storage,
-  whitelist: ["filter"],
+  blacklist: ["_persist"],
 };
 
-const persistedReducer = persistReducer(persistConfig, filterReducer);
+const filterPersistConfig = {
+  key: "filter",
+  storage,
+  whitelist: ["tags", "searchText"],
+  blacklist: ["_persist"],
+};
+
+const persistedBookmarkReducer = persistReducer(
+  bookmarkPersistConfig,
+  bookmarkReducer
+);
+const persistedFilterReducer = persistReducer(
+  filterPersistConfig,
+  filterReducer
+);
 
 export const store = configureStore({
   reducer: {
-    filter: persistedReducer,
+    filter: persistedFilterReducer,
+    bookmarks: persistedBookmarkReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export const persistor = persistStore(store);
