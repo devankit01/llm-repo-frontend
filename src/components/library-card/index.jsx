@@ -52,7 +52,7 @@ const LibraryCard = ({ library }) => {
     <div>
       {/* Card */}
       <div
-        className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[19rem] relative overflow-hidden group cursor-pointer"
+        className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[13.5rem] relative overflow-hidden group cursor-pointer"
         onClick={openModal} // Open the modal with updated content
       >
         {/* Bookmark Button */}
@@ -73,7 +73,7 @@ const LibraryCard = ({ library }) => {
         {/* Content */}
         <div className="lower-part p-5 bg-gradient-to-t from-[#202330] to-transparent">
           {/* Title */}
-          <div className="absolute top-12 left-0 px-5">
+          <div className="absolute top-6 left-0 px-5">
             <a
               href={library.url}
               target="_blank"
@@ -94,16 +94,16 @@ const LibraryCard = ({ library }) => {
             </div>
           </div>
           {/* Tags */}
-          <div className="tags flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5">
+          <ul className="tags flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5 w-full max-h-20">
             {tagsArray.map((tag, index) => (
-              <span
+              <li
                 key={index}
-                className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md"
+                className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md uppercase block"
               >
                 {tag.trim()}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
 

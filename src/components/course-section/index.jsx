@@ -7,15 +7,23 @@ import { Link } from "react-router-dom";
 const CourseCardSkeleton = () => {
   return (
     <div className="animate-pulse">
-      <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[12rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group">
+      {/* Card Skeleton */}
+      <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[10.5rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group">
+        {/* Bookmark Button Skeleton */}
         <div className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#2a2b35] rounded-md"></div>
 
+        {/* Content Skeleton */}
         <div className="p-4 flex flex-col h-full">
+          {/* Heading Skeleton */}
           <div className="flex items-center justify-between">
-            <div className="w-3/4 h-6 bg-[#2a2b35] rounded mb-2.5"></div>
+            <div className="w-5/6 h-12 bg-[#2a2b35] rounded mb-3"></div>
           </div>
-          <div className="w-4/5 h-4 bg-[#2a2b35] rounded mb-2"></div>
+
+          {/* Text Below Heading Skeleton */}
+          <div className="w-full h-4 bg-[#2a2b35] rounded mb-2"></div>
           <div className="w-3/4 h-4 bg-[#2a2b35] rounded mb-2"></div>
+
+          {/* Categories Skeleton */}
           <div className="flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5">
             <div className="w-20 h-5 bg-[#2a2b35] rounded-md"></div>
             <div className="w-16 h-5 bg-[#2a2b35] rounded-md"></div>

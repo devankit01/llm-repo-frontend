@@ -50,7 +50,7 @@ const GPTCard = ({ tool }) => {
   return (
     <div>
       <div
-        className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-52 relative overflow-hidden group cursor-pointer"
+        className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[11rem] relative overflow-hidden group cursor-pointer"
         onClick={openModal}
       >
         <button
@@ -73,7 +73,7 @@ const GPTCard = ({ tool }) => {
               href={tool.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="header-cont flex items-center mb-2.5"
+              className="header-cont flex items-center mb-2"
               onClick={(e) => e.stopPropagation()}
             >
               <h1 className="text-lg font-semibold whitespace-normal break-words">
@@ -92,7 +92,7 @@ const GPTCard = ({ tool }) => {
             {categoriesArray.map((category, index) => (
               <span
                 key={index}
-                className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md"
+                className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md uppercase"
               >
                 {category.trim()}
               </span>

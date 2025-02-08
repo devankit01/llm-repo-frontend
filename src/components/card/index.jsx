@@ -106,7 +106,7 @@ const Card = ({ tool }) => {
             </div>
           </div>
           {/* Tags */}
-          <div className="tags flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5">
+          <div className="tags flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5 max-h-32 overflow-y-hidden">
             {tagsArray.map((tag, index) => (
               <span
                 key={index}

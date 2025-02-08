@@ -7,18 +7,28 @@ import { Link } from "react-router-dom";
 const WebinarCardSkeleton = () => {
   return (
     <div className="animate-pulse">
-      <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[20rem] flex flex-col justify-between relative overflow-hidden group">
+      {/* Card Skeleton */}
+      <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[17rem] flex flex-col justify-between relative overflow-hidden group">
+        {/* Bookmark Button Skeleton */}
         <div className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#2a2b35] rounded-md"></div>
 
         <div className="p-4 flex flex-col h-full">
-          <div className="flex items-start mb-2 h-[5.2rem]">
+          {/* Webinar Title Skeleton */}
+          <div className="flex flex-col items-start mb-2 mt-2">
             <div className="w-3/4 h-6 bg-[#2a2b35] rounded mb-2"></div>
+            <div className="w-full h-6 bg-[#2a2b35] rounded mb-2"></div>
           </div>
+
+          {/* Description Skeleton */}
           <div className="w-full h-12 bg-[#2a2b35] rounded mb-3"></div>
+
+          {/* Host and Timestamp Skeleton */}
           <div className="flex flex-col mb-3">
             <div className="w-1/2 h-4 bg-[#2a2b35] rounded mb-2"></div>
             <div className="w-1/3 h-4 bg-[#2a2b35] rounded"></div>
           </div>
+
+          {/* Tags Skeleton */}
           <div className="flex flex-wrap gap-2 mt-2 absolute bottom-7">
             <div className="w-20 h-5 bg-[#2a2b35] rounded-md"></div>
             <div className="w-16 h-5 bg-[#2a2b35] rounded-md"></div>

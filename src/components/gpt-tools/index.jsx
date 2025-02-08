@@ -5,11 +5,11 @@ import { Pagination, Skeleton } from "@mui/material";
 import { Filter } from "../filter";
 import { fetchGPTTools, gptSearch } from "../../redux/slice/filterSlice";
 
-const ITEMS_PER_PAGE = 12; 
+const ITEMS_PER_PAGE = 12;
 
 const GPTTools = () => {
   const dispatch = useDispatch();
-  const { gpt, loading, searchText, filteredData,tags } = useSelector(
+  const { gpt, loading, searchText, filteredData, tags } = useSelector(
     (state) => state.filter
   );
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,14 +35,14 @@ const GPTTools = () => {
 
   const currentPageData = (() => {
     if (tags.length > 0) {
-      const filteredByTags = (
-        searchText === "" ? gpt : filteredData
-      ).filter((tool) => {
-        const toolTags = tool.category
-          ? tool.category.split(";").map((tag) => tag.trim().toLowerCase())
-          : [];
-        return toolTags.some((tag) => tags.includes(tag.trim()));
-      });
+      const filteredByTags = (searchText === "" ? gpt : filteredData).filter(
+        (tool) => {
+          const toolTags = tool.category
+            ? tool.category.split(";").map((tag) => tag.trim().toLowerCase())
+            : [];
+          return toolTags.some((tag) => tags.includes(tag.trim()));
+        }
+      );
       return filteredByTags.slice(startIndex, startIndex + ITEMS_PER_PAGE);
     } else if (searchText.trim() && tags.length === 0) {
       return filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
@@ -50,6 +50,38 @@ const GPTTools = () => {
       return gpt.slice(startIndex, startIndex + ITEMS_PER_PAGE);
     }
   })();
+
+  const GPTCardSkeleton = () => {
+    return (
+      <div className="animate-pulse">
+        <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[11rem] relative overflow-hidden group cursor-pointer">
+          {/* Bookmark Button */}
+          <div className="absolute w-8 h-8 right-3 top-3 bg-[#2a2b35] rounded-md"></div>
+
+          <div className="lower-part p-5 w-full">
+            <div className="absolute top-6 left-0 px-5 w-full">
+              {/* Title */}
+              <div className="w-3/4 h-4 bg-[#2a2b35] rounded mb-3"></div>
+
+              {/* Description */}
+              <div className="space-y-2 mb-3">
+                <div className="w-full h-3 bg-[#2a2b35] rounded"></div>
+                <div className="w-11/12 h-3 bg-[#2a2b35] rounded"></div>
+                <div className="w-10/12 h-3 bg-[#2a2b35] rounded"></div>
+              </div>
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 absolute bottom-0 left-0 px-5 mb-3">
+              <div className="w-16 h-5 bg-[#2a2b35] rounded-md"></div>
+              <div className="w-14 h-5 bg-[#2a2b35] rounded-md"></div>
+              <div className="w-12 h-5 bg-[#2a2b35] rounded-md"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section>
@@ -69,11 +101,12 @@ const GPTTools = () => {
         {loading ? (
           Array.from({ length: ITEMS_PER_PAGE }).map((_, index) => (
             <div className="col-span-1" key={index}>
-              <Skeleton
+              <GPTCardSkeleton />
+              {/* <Skeleton
                 variant="rectangular"
                 width="100%"
                 height={200}
-                sx={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                sx={{ backgroundColor: "#2a2b35" }}
               />
               <Skeleton
                 variant="text"
@@ -86,12 +119,13 @@ const GPTTools = () => {
                 variant="text"
                 width="60%"
                 sx={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-              />
+              /> */}
             </div>
           ))
         ) : currentPageData.length > 0 ? (
           currentPageData.map((tool, index) => (
             <div className="col-span-1" key={index}>
+              {/* <GPTCardSkeleton /> */}
               <GPTCard tool={tool} />
             </div>
           ))
@@ -111,13 +145,13 @@ const GPTTools = () => {
             color="primary"
             sx={{
               "& .MuiPaginationItem-root": {
-                color: "white", 
+                color: "white",
               },
               "& .Mui-selected": {
-                backgroundColor: "rgba(255, 255, 255, 0.2) !important", 
+                backgroundColor: "rgba(255, 255, 255, 0.2) !important",
               },
               "& .MuiPaginationItem-ellipsis": {
-                color: "rgba(255, 255, 255, 0.6)", 
+                color: "rgba(255, 255, 255, 0.6)",
               },
             }}
           />

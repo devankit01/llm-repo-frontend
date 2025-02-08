@@ -8,32 +8,27 @@ const LibraryCardSkeleton = () => {
   return (
     <div className="animate-pulse">
       {/* Card */}
-      <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[19rem] relative overflow-hidden group cursor-pointer">
+      <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[14rem] relative overflow-hidden group cursor-pointer">
         {/* Bookmark Button */}
-
-        <div className="absolute top-3 right-3 w-8 h-8 bg-[#2a2b35] rounded-md"></div>
+        <div className="absolute top-4 right-4 w-9 h-9 bg-[#2a2b35] rounded-md"></div>
 
         {/* Content */}
-        <div className="lower-part p-5">
+        <div className="p-6 relative mt-6">
           {/* Title */}
-          {/* <div className="absolute top-12 left-0 px-5">
-            <div className="w-3/4 h-6 bg-gray-500 rounded mb-2.5" />
-            <div className="w-1/2 h-4 bg-gray-400 rounded" />
-          </div> */}
+          <div className="w-3/4 h-6 bg-[#2a2b35] rounded mb-3"></div>
 
           {/* Description */}
-          <div className="absolute top-14 left-5 right-5">
-            <div className="w-full h-10 bg-[#2a2b35] rounded-md mb-4"></div>
-            <div className="w-full h-3 bg-[#2a2b35] rounded-md mb-2"></div>
-            <div className="w-full h-3 bg-[#2a2b35] rounded-md mb-2"></div>
-            <div className="w-5/6 h-3 bg-[#2a2b35] rounded-md mb-2"></div>
-            <div className="w-4/5 h-3 bg-[#2a2b35] rounded-md mb-2"></div>
+          <div className="space-y-2 mb-14">
+            <div className="w-full h-3 bg-[#2a2b35] rounded-md"></div>
+            <div className="w-11/12 h-3 bg-[#2a2b35] rounded-md"></div>
+            <div className="w-10/12 h-3 bg-[#2a2b35] rounded-md"></div>
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5">
-            <div className="w-20 h-5 bg-[#2a2b35] rounded-md" />
-            <div className="w-16 h-5 bg-[#2a2b35] rounded-md" />
+          <div className="flex gap-3">
+            <div className="w-1/2 h-4 bg-[#2a2b35] rounded-md"></div>
+            <div className="w-1/2 h-4 bg-[#2a2b35] rounded-md"></div>
+            {/* <div className="w-16 h-6 bg-[#2a2b35] rounded-md"></div> */}
           </div>
         </div>
       </div>
@@ -49,7 +44,9 @@ const ButtonSkeleton = () => {
 
 const LibrarySection = () => {
   const dispatch = useDispatch();
-  const { llmlibrary, loading, error,filteredData } = useSelector((state) => state.filter);
+  const { llmlibrary, loading, error, filteredData } = useSelector(
+    (state) => state.filter
+  );
 
   useEffect(() => {
     dispatch(fetchLLMLibraries()); // Fetch libraries using Redux thunk

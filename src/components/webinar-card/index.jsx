@@ -58,7 +58,7 @@ const WebinarCard = ({ webinar }) => {
     <div>
       {/* Card */}
       <div
-        className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[20rem] flex flex-col justify-between relative overflow-hidden group cursor-pointer"
+        className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[17rem] flex flex-col justify-between relative overflow-hidden group cursor-pointer"
         onClick={openModal} // Open the modal with updated content
       >
         {/* Bookmark Button */}
@@ -75,7 +75,7 @@ const WebinarCard = ({ webinar }) => {
 
         <div className="p-4 flex flex-col h-full">
           {/* Webinar Title */}
-          <div className="flex items-start mb-2 h-[5.2rem]">
+          <div className="flex items-start">
             <a
               href={webinar.url}
               target="_blank"
@@ -83,14 +83,14 @@ const WebinarCard = ({ webinar }) => {
               className="header-cont flex items-center mb-2.5"
               onClick={(e) => e.stopPropagation()}
             >
-              <h1 className="text-lg sm:text-xl font-semibold text-white line-clamp-3">
+              <h1 className="text-lg sm:text-xl font-semibold text-white line-clamp-2">
                 {webinar.title}
               </h1>
             </a>
           </div>
 
           {/* Description with line-clamp */}
-          <p className="text-xs sm:text-sm text-gray-400 mb-3 line-clamp-3 h-[3.9rem]">
+          <p className="text-xs sm:text-sm text-gray-400 mb-3 line-clamp-3 max-h-[3.9rem]">
             {webinar.description || "No description available."}
           </p>
 
@@ -100,23 +100,23 @@ const WebinarCard = ({ webinar }) => {
               <span className="font-semibold">Host:</span>{" "}
               <span className="text-gray-400">{webinar.host}</span>
             </span>
-            <span className="text-sm sm:text-base text-[#7F89FF] h-10">
+            <span className="text-sm sm:text-base text-[#7F89FF]">
               {webinar.timestamp}
             </span>
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mt-2">
+          <ul className="flex flex-wrap gap-2 mt-2">
             {webinar.tags &&
               webinar.tags.split(",").map((tag, index) => (
-                <span
+                <li
                   key={index}
-                  className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] sm:text-xs px-2 py-1 rounded-md"
+                  className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] sm:text-xs px-2 py-1 rounded-md uppercase"
                 >
                   {tag.trim()}
-                </span>
+                </li>
               ))}
-          </div>
+          </ul>
         </div>
       </div>
 

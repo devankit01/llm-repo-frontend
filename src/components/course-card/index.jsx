@@ -33,7 +33,7 @@ const CourseCard = ({ course }) => {
 
       <div
         onClick={openModal}
-        className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[12rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group"
+        className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[10.5rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group"
       >
         {/* Bookmark Button */}
         <button
@@ -55,10 +55,10 @@ const CourseCard = ({ course }) => {
               href={course.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="header-cont flex items-center mb-2.5 w-[calc(100%-3rem)]"
+              className="header-cont flex items-center mb-2.5 w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <h1 className="text-lg font-semibold text-white h-20 line-clamp-3">
+              <h1 className="text-lg font-semibold text-white line-clamp-2">
                 {course.title}
               </h1>
               {/* <MdArrowOutward
@@ -74,16 +74,16 @@ const CourseCard = ({ course }) => {
           </p>
 
           {/* Categories */}
-          <div className="tags flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5">
+          <ul className="tags flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5 w-full">
             {categoriesArray.map((category, index) => (
-              <span
+              <li
                 key={index}
-                className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md"
+                className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md uppercase"
               >
                 {category.trim()}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
 

@@ -6,7 +6,7 @@ const CourseCardSkeleton = () => {
   return (
     <div className="animate-pulse">
       {/* Card Skeleton */}
-      <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[12rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group">
+      <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[10.5rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group">
         {/* Bookmark Button Skeleton */}
         <div className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#2a2b35] rounded-md"></div>
 
@@ -14,7 +14,7 @@ const CourseCardSkeleton = () => {
         <div className="p-4 flex flex-col h-full">
           {/* Heading Skeleton */}
           <div className="flex items-center justify-between">
-            <div className="w-5/6 h-12 bg-[#2a2b35] rounded mb-10"></div>
+            <div className="w-5/6 h-12 bg-[#2a2b35] rounded mb-3"></div>
           </div>
 
           {/* Text Below Heading Skeleton */}
@@ -84,13 +84,18 @@ const Courses = () => {
                 </div>
               ))
           ) : coursesData.length > 0 ? (
-            // Display actual CourseCards once data is fetched
             coursesData.map((course) => (
               <div key={course.id} className="col-span-1">
                 <CourseCard course={course} />
               </div>
             ))
           ) : (
+            // Display actual CourseCards once data is fetched
+            // coursesData.map((course) => (
+            //   <div key={course.id} className="col-span-1">
+            //     <CourseCard course={course} />
+            //   </div>
+            // ))
             <p className="text-white text-lg">
               No courses available at the moment.
             </p>
