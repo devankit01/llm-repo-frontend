@@ -97,7 +97,7 @@ const GPTTools = () => {
       <div className="mb-5 lg:hidden block">
         <Filter />
       </div>
-      <div className="gpt-cards grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 w-full">
+      <div className="gpt-cards grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 w-full">
         {loading ? (
           Array.from({ length: ITEMS_PER_PAGE }).map((_, index) => (
             <div className="col-span-1" key={index}>
