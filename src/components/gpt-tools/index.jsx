@@ -28,11 +28,6 @@ const GPTTools = () => {
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
 
-  // const currentPageData =
-  //   searchText === ""
-  //     ? gpt.slice(startIndex, startIndex + ITEMS_PER_PAGE)
-  //     : filteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
   const currentPageData = (() => {
     if (tags.length > 0) {
       const filteredByTags = (searchText === "" ? gpt : filteredData).filter(
@@ -86,7 +81,7 @@ const GPTTools = () => {
   return (
     <section>
       <div className="header mb-8">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-3 md:mb-10">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-3 md:mb-10">
           Explore Top GPT Tools
         </h1>
         <p className="md:text-base sm:text-sm text-xs">

@@ -10,25 +10,28 @@ const ITEMS_PER_PAGE = 12; // Number of items to display per page
 
 const CardSkeleton = () => {
   return (
-    <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[19rem] overflow-hidden relative animate-pulse">
+    <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[15rem] overflow-hidden relative animate-pulse">
       {/* Header Section */}
-      <div className="absolute top-3 left-3 w-20 h-4 bg-[#2a2b35] rounded-md"></div>
-      <div className="absolute top-3 right-3 w-8 h-8 bg-[#2a2b35] rounded-md"></div>
+      <div className="absolute top-6 left-3 w-20 h-4 bg-[#2a2b35] rounded-md"></div>
+      {/* <div className="absolute top-3 right-3 w-8 h-8 bg-[#2a2b35] rounded-md"></div> */}
 
       {/* Content Section */}
-      <div className="absolute top-12 left-5 right-5">
-        <div className="w-1/2 h-5 bg-[#2a2b35] rounded-md mb-2"></div>
+      <div className="absolute top-16 left-3 right-3">
+        <div className="w-full h-3 bg-[#2a2b35] rounded-md mb-2"></div>
         <div className="w-full h-3 bg-[#2a2b35] rounded-md mb-2"></div>
         <div className="w-5/6 h-3 bg-[#2a2b35] rounded-md mb-2"></div>
         <div className="w-4/5 h-3 bg-[#2a2b35] rounded-md mb-2"></div>
       </div>
 
       {/* Tags Section */}
-      <div className="absolute bottom-5 left-5 flex gap-2">
+      <div className="absolute bottom-5 left-3 flex flex-wrap gap-2">
         {Array(3)
           .fill(null)
           .map((_, index) => (
-            <div key={index} className="w-12 h-4 bg-[#2a2b35] rounded-md"></div>
+            <div
+              key={index}
+              className="w-32 h-5 bg-[#2a2b35] rounded-md block"
+            ></div>
           ))}
       </div>
     </div>
@@ -37,7 +40,7 @@ const CardSkeleton = () => {
 
 const ButtonSkeleton = () => {
   return (
-    <div className="w-36 h-10 bg-[#2a2b35] rounded-lg mx-auto animate-pulse"></div>
+    <div className="sm:w-[8.3rem] w-28 sm:h-10 h-9 bg-[#2a2b35] rounded-lg mx-auto animate-pulse"></div>
   );
 };
 
@@ -87,8 +90,8 @@ const LLMTools = () => {
   return (
     <>
       <section>
-        <div className="header mb-5">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-3 md:mb-10">
+        <div className="header mb-5 px-2">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-3 md:mb-10">
             Explore Top LLMS
           </h1>
           <p className="md:text-base sm:text-sm text-xs">
@@ -115,11 +118,13 @@ const LLMTools = () => {
             : location.pathname === "/"
             ? limitedLLMTools.map((tool, index) => (
                 <div className="col-span-1" key={index}>
+                  {/* <CardSkeleton /> */}
                   <Card tool={tool} />
                 </div>
               ))
             : currentPageData.map((tool, index) => (
                 <div className="col-span-1" key={index}>
+                  {/* <CardSkeleton /> */}
                   <Card tool={tool} />
                 </div>
               ))}
@@ -150,12 +155,15 @@ const LLMTools = () => {
             {loading ? (
               <ButtonSkeleton />
             ) : (
-              <Link
-                to={"/llm-tools"}
-                className="bg-[#7F89FF] text-[#11111e] px-6 py-2 rounded-lg transition-all duration-300 ease-in-out font-medium"
-              >
-                View More
-              </Link>
+              <>
+                {/* <ButtonSkeleton /> */}
+                <Link
+                  to={"/llm-tools"}
+                  className="bg-[#7F89FF] text-[#11111e] sm:px-6 px-5 py-2 rounded-lg transition-all duration-300 ease-in-out font-medium sm:text-base text-sm"
+                >
+                  View More
+                </Link>
+              </>
             )}
           </div>
         )}

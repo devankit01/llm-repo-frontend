@@ -33,19 +33,15 @@ const CourseCard = ({ course }) => {
 
       <div
         onClick={openModal}
-        className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[10.5rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group"
+        className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[9rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group"
       >
-        {/* Bookmark Button */}
-        <button
-          onClick={(e) => bookmarkHandler(e)}
-          className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#202330] z-20 rounded-md opacity-50 hover:opacity-100 duration-300 transition-all ease-in-out"
-        >
-          {bookmark ? (
-            <FaBookmark fill="#7F89FF" />
-          ) : (
-            <FaRegBookmark fill="#7F89FF" />
-          )}
-        </button>
+        <div className="absolute w-full flex justify-between items-center top-6 px-4">
+          <span className="text-xs font-semibold text-[#7F89FF] ml-auto">
+            {course.sponsor == true || course.sponsor == "TRUE"
+              ? "SPONSORED"
+              : ""}
+          </span>
+        </div>
 
         {/* Content */}
         <div className="p-4 flex flex-col h-full">
@@ -58,7 +54,7 @@ const CourseCard = ({ course }) => {
               className="header-cont flex items-center mb-2.5 w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <h1 className="text-lg font-semibold text-white line-clamp-2">
+              <h1 className="text-lg font-semibold text-white line-clamp-1">
                 {course.title}
               </h1>
               {/* <MdArrowOutward
@@ -74,7 +70,7 @@ const CourseCard = ({ course }) => {
           </p>
 
           {/* Categories */}
-          <ul className="tags flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5 w-full">
+          <ul className="tags flex flex-wrap gap-2 absolute bottom-4 left-0 sm:px-5 px-3.5 sm:mt-0 mt-3.5 w-full">
             {categoriesArray.map((category, index) => (
               <li
                 key={index}

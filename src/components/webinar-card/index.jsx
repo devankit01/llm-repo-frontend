@@ -8,11 +8,6 @@ const WebinarCard = ({ webinar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  const bookmarkHandler = (e) => {
-    e.stopPropagation(); // Prevent the modal from opening on bookmark click
-    setBookmark(!bookmark);
-  };
-
   const openModal = () => {
     // Set the modal content dynamically
     setModalContent(
@@ -61,18 +56,14 @@ const WebinarCard = ({ webinar }) => {
         className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[17rem] flex flex-col justify-between relative overflow-hidden group cursor-pointer"
         onClick={openModal} // Open the modal with updated content
       >
-        {/* Bookmark Button */}
-        <button
-          onClick={(e) => bookmarkHandler(e)}
-          className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#202330] z-20 rounded-md opacity-50 hover:opacity-100 duration-300 transition-all ease-in-out"
-        >
-          {bookmark ? (
-            <FaBookmark fill="#7F89FF" />
-          ) : (
-            <FaRegBookmark fill="#7F89FF" />
-          )}
-        </button>
-
+        {" "}
+        <div className="absolute w-full flex justify-between items-center top-6 px-4">
+          <span className="text-xs font-semibold text-[#7F89FF] ml-auto">
+            {webinar.sponsor == true || webinar.sponsor == "TRUE"
+              ? "SPONSORED"
+              : ""}
+          </span>
+        </div>
         <div className="p-4 flex flex-col h-full">
           {/* Webinar Title */}
           <div className="flex items-start">

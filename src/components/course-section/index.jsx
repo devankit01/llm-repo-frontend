@@ -10,7 +10,7 @@ const CourseCardSkeleton = () => {
       {/* Card Skeleton */}
       <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[10.5rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group">
         {/* Bookmark Button Skeleton */}
-        <div className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#2a2b35] rounded-md"></div>
+        {/* <div className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#2a2b35] rounded-md"></div> */}
 
         {/* Content Skeleton */}
         <div className="p-4 flex flex-col h-full">
@@ -37,7 +37,7 @@ const CourseCardSkeleton = () => {
 // Skeleton for Button
 const ButtonSkeleton = () => {
   return (
-    <div className="w-36 h-10 bg-[#2a2b35] rounded-lg mx-auto animate-pulse"></div>
+    <div className="sm:w-[8.3rem] w-28 sm:h-10 h-9 bg-[#2a2b35] rounded-lg mx-auto animate-pulse"></div>
   );
 };
 
@@ -81,7 +81,7 @@ const CourseSection = () => {
 
   return (
     <section className="pt-20 pb-10">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold md:mb-10 mb-5">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-3 md:mb-10 px-2">
         Popular Courses
       </h2>
 
@@ -110,7 +110,7 @@ const CourseSection = () => {
         <div className="text-center">
           <Link
             to={"/llm-courses"}
-            className="bg-[#7F89FF] text-[#11111e] px-6 py-2 rounded-lg transition-all duration-300 ease-in-out font-medium"
+            className="bg-[#7F89FF] text-[#11111e] sm:px-6 px-5 py-2 rounded-lg transition-all duration-300 ease-in-out font-medium sm:text-base text-sm"
           >
             View More
           </Link>

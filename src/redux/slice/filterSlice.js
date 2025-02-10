@@ -15,14 +15,16 @@ export const fetchLLMTools = createAsyncThunk(
       const tools = response.tools || [];
 
       // Sort tools: Sponsored first, then ranked by rank, then remaining
-      const sortedTools = tools.sort((a, b) => {
-        if (a.is_sponsor && !b.is_sponsor) return -1; // Sponsored first
-        if (!a.is_sponsor && b.is_sponsor) return 1;
-        if (a.rank && b.rank) return parseInt(a.rank) - parseInt(b.rank); // Ranked by rank
-        if (a.rank && !b.rank) return -1; // Ranked items before non-ranked
-        if (!a.rank && b.rank) return 1;
-        return 0; // No sorting for other cases
-      });
+      const sortedTools = tools
+        .sort((a, b) => {
+          if (a.is_sponsor && !b.is_sponsor) return -1; // Sponsored first
+          if (!a.is_sponsor && b.is_sponsor) return 1;
+          if (a.rank && b.rank) return parseInt(a.rank) - parseInt(b.rank); // Ranked by rank
+          if (a.rank && !b.rank) return -1; // Ranked items before non-ranked
+          if (!a.rank && b.rank) return 1;
+          return 0; // No sorting for other cases
+        })
+        .filter((tool) => tool.hide !== true);
 
       return sortedTools;
     } catch (error) {
@@ -36,11 +38,13 @@ export const fetchGPTTools = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await gptTools();
-      const sortedData = (response.data || []).sort((a, b) => {
-        const rankA = a.rank ? parseInt(a.rank) : Infinity;
-        const rankB = b.rank ? parseInt(b.rank) : Infinity;
-        return rankA - rankB; // Sort by rank (ascending)
-      });
+      const sortedData = (response.data || [])
+        .sort((a, b) => {
+          const rankA = a.rank ? parseInt(a.rank) : Infinity;
+          const rankB = b.rank ? parseInt(b.rank) : Infinity;
+          return rankA - rankB; // Sort by rank (ascending)
+        })
+        .filter((tool) => tool.hide !== true);
       return sortedData;
     } catch (error) {
       return rejectWithValue(error.message || "Failed to fetch GPT tools");
@@ -112,6 +116,8 @@ const filterSlice = createSlice({
     },
     setTag: (state, action) => {
       const tagName = action.payload;
+      // console.log(state.tags);
+
       if (state.tags.includes(tagName)) {
         state.tags = state.tags.filter((tag) => tag !== tagName);
       } else if (tagName === "") {

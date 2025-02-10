@@ -53,7 +53,7 @@ const GPTCard = ({ tool }) => {
         className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[11rem] relative overflow-hidden group cursor-pointer"
         onClick={openModal}
       >
-        <button
+        {/* <button
           onClick={(e) => bookmarkHandler(e)}
           className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#202330] z-20 rounded-md opacity-50 hover:opacity-100 duration-300 transition-all ease-in-out"
         >
@@ -65,7 +65,7 @@ const GPTCard = ({ tool }) => {
             fill="#7F89FF"
             className={`${bookmark ? "block" : "hidden"} absolute`}
           />
-        </button>
+        </button> */}
 
         <div className="lower-part p-5 bg-gradient-to-t from-[#202330] to-transparent w-full">
           <div className="absolute top-6 left-0 px-5 w-full">

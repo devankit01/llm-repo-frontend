@@ -12,7 +12,6 @@ const Card = ({ tool }) => {
   const dispatch = useDispatch();
   const bookmarks = useSelector((state) => state.bookmarks.llmTools || []);
 
-
   const bookmarkHandler = (e) => {
     e.stopPropagation();
     if (bookmarks.some((i) => i.id === tool.id)) {
@@ -48,7 +47,7 @@ const Card = ({ tool }) => {
           href={tool.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#11111e] px-5 py-2 border border-[#7F89FF] bg-[#7F89FF] font-medium rounded-lg flex items-center w-max"
+          className="text-[#11111e] px-5 py-2 border border-[#7F89FF] bg-[#7F89FF] font-medium rounded-lg flex items-center w-max sm:text-base text-sm"
         >
           Visit Source <FaArrowRight fill="#11111e" className="ml-2" />
         </a>
@@ -61,15 +60,15 @@ const Card = ({ tool }) => {
     <div>
       {/* Card */}
       <div
-        className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[19rem] relative overflow-hidden group cursor-pointer"
-        onClick={openModal} 
+        className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[15rem] relative overflow-hidden group cursor-pointer"
+        onClick={openModal}
       >
-        <div className="absolute w-full flex justify-between items-center top-3 px-3">
-          <span className="text-xs font-semibold text-[#7F89FF]">
+        <div className="absolute w-full flex justify-between items-center top-6 px-4">
+          <span className="text-xs font-semibold text-[#7F89FF] ml-auto">
             {tool.is_sponsor ? "SPONSORED" : ""}
           </span>
 
-          <button
+          {/* <button
             onClick={(e) => bookmarkHandler(e)}
             className="w-8 h-8 grid place-items-center bg-[#202330] z-20 rounded-md opacity-50 hover:opacity-100 duration-300 transition-all ease-in-out"
           >
@@ -81,13 +80,13 @@ const Card = ({ tool }) => {
               fill="#7F89FF"
               className={`${bookmark ? "block" : "hidden"} absolute`}
             />
-          </button>
+          </button> */}
         </div>
 
         {/* Content */}
-        <div className="lower-part p-5 bg-gradient-to-t from-[#202330] to-transparent">
+        <div className="lower-part sm:p-5 p-3.5 bg-gradient-to-t from-[#202330] to-transparent">
           {/* Source */}
-          <div className="absolute top-12 left-0 px-5">
+          <div className="">
             <a
               href={tool.link}
               target="_blank"
@@ -106,7 +105,7 @@ const Card = ({ tool }) => {
             </div>
           </div>
           {/* Tags */}
-          <div className="tags flex flex-wrap gap-2 mb-3 absolute bottom-0 left-0 px-5 max-h-32 overflow-y-hidden">
+          <div className="tags flex flex-wrap gap-2 absolute bottom-4 left-0 sm:px-5 px-3.5 sm:mt-0 mt-3.5 max-h-32 overflow-y-hidden">
             {tagsArray.map((tag, index) => (
               <span
                 key={index}

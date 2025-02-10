@@ -54,8 +54,6 @@ const Filter = () => {
       : setTags(extractUniqueTags(gpt, ";"));
   }, [location, llmtool, llmlibrary, gpt]);
 
-  console.log(tagList);
-
   return (
     <section
       className={`bg-[#202330] py-8 px-5 lg:h-[calc(100vh-80px)] lg:overflow-y-scroll w-full lg:rounded-none rounded-xl`}

@@ -8,7 +8,7 @@ const CourseCardSkeleton = () => {
       {/* Card Skeleton */}
       <div className="border border-[#202330] bg-[#11111e] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[10.5rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group">
         {/* Bookmark Button Skeleton */}
-        <div className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#2a2b35] rounded-md"></div>
+        {/* <div className="absolute w-8 h-8 right-3 top-3 grid place-items-center bg-[#2a2b35] rounded-md"></div> */}
 
         {/* Content Skeleton */}
         <div className="p-4 flex flex-col h-full">

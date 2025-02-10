@@ -14,18 +14,19 @@ const LibraryCardSkeleton = () => {
   return (
     <div className="animate-pulse">
       {/* Card */}
-      <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[14rem] relative overflow-hidden group cursor-pointer">
+      <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[11rem] relative overflow-hidden group cursor-pointer">
         {/* Bookmark Button */}
-        <div className="absolute top-4 right-4 w-9 h-9 bg-[#2a2b35] rounded-md"></div>
+        {/* <div className="absolute top-4 right-4 w-9 h-9 bg-[#2a2b35] rounded-md"></div> */}
 
         {/* Content */}
-        <div className="p-6 relative mt-6">
+        <div className="p-6 relative">
           {/* Title */}
-          <div className="w-3/4 h-6 bg-[#2a2b35] rounded mb-3"></div>
+          <div className="w-3/4 h-4 bg-[#2a2b35] rounded mb-6"></div>
 
           {/* Description */}
-          <div className="space-y-2 mb-14">
+          <div className="space-y-2 mb-3.5">
             <div className="w-full h-3 bg-[#2a2b35] rounded-md"></div>
+            {/* <div className="w-full h-3 bg-[#2a2b35] rounded-md"></div> */}
             <div className="w-11/12 h-3 bg-[#2a2b35] rounded-md"></div>
             <div className="w-10/12 h-3 bg-[#2a2b35] rounded-md"></div>
           </div>
