@@ -51,7 +51,7 @@ const GPTTools = () => {
       <div className="animate-pulse">
         <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[11rem] relative overflow-hidden group cursor-pointer">
           {/* Bookmark Button */}
-          <div className="absolute w-8 h-8 right-3 top-3 bg-[#2a2b35] rounded-md"></div>
+          {/* <div className="absolute w-8 h-8 right-3 top-3 bg-[#2a2b35] rounded-md"></div> */}
 
           <div className="lower-part p-5 w-full">
             <div className="absolute top-6 left-0 px-5 w-full">

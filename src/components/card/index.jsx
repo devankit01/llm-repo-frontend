@@ -60,27 +60,13 @@ const Card = ({ tool }) => {
     <div>
       {/* Card */}
       <div
-        className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[15rem] relative overflow-hidden group cursor-pointer"
+        className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[17rem] relative overflow-hidden group cursor-pointer"
         onClick={openModal}
       >
         <div className="absolute w-full flex justify-between items-center top-6 px-4">
           <span className="text-xs font-semibold text-[#7F89FF] ml-auto">
             {tool.is_sponsor ? "SPONSORED" : ""}
           </span>
-
-          {/* <button
-            onClick={(e) => bookmarkHandler(e)}
-            className="w-8 h-8 grid place-items-center bg-[#202330] z-20 rounded-md opacity-50 hover:opacity-100 duration-300 transition-all ease-in-out"
-          >
-            <FaRegBookmark
-              fill="#7F89FF"
-              className={`${bookmark ? "hidden" : "block"} absolute`}
-            />
-            <FaBookmark
-              fill="#7F89FF"
-              className={`${bookmark ? "block" : "hidden"} absolute`}
-            />
-          </button> */}
         </div>
 
         {/* Content */}

@@ -38,41 +38,67 @@ const Navbar = () => {
       path: "/gpt",
       subLink: [],
     },
-    {
-      name: "Bookmarks",
-      path: "/bookmarks",
-      subLink: [],
-    },
+    // {
+    //   name: "Bookmarks",
+    //   path: "/bookmarks",
+    //   subLink: [],
+    // },
   ];
 
   const modalContent = (
-    <form className="space-y-4">
-      <input
-        type="text"
-        placeholder="Name"
-        className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#888]"
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#888]"
-      />
-      <input
-        type="text"
-        placeholder="Message"
-        className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#888]"
-      />
-      <input
-        type="url"
-        placeholder="Link"
-        className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#888]"
-      />
-      <button
-        type="submit"
-        className="w-full bg-[#7F89FF] text-[#11111e] px-4 py-2.5 rounded-xl font-semibold transition-all duration-200 hover:opacity-90"
-      >
-        Submit
-      </button>
+    <form className="">
+      <h1 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-3 md:mb-10 text-center">
+        Submit your LLM
+      </h1>
+      <div className="frm-container mb-5">
+        <div className="element mb-4">
+          <label htmlFor="" className="text-[#888]">
+            Name
+          </label>
+          <input
+            type="text"
+            placeholder="john doe"
+            className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#444]"
+          />
+        </div>
+        <div className="element mb-4">
+          <label htmlFor="" className="text-[#888]">
+            Email
+          </label>
+          <input
+            type="email"
+            placeholder="john.doe@gmail.com"
+            className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#444]"
+          />
+        </div>
+        <div className="element mb-4">
+          <label htmlFor="" className="text-[#888]">
+            Message
+          </label>
+          <textarea
+            name="message"
+            placeholder="llm description"
+            rows={2}
+            className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#444] resize-none"
+          ></textarea>
+        </div>
+        <div className="element mb-4">
+          <label htmlFor="" className="text-[#888]">
+            LLM link
+          </label>
+          <input
+            type="url"
+            placeholder="https://johndoe.ai"
+            className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#444]"
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-[#7F89FF] text-[#fff] px-4 py-2.5 rounded-xl font-semibold transition-all duration-200 hover:opacity-90"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 

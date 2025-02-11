@@ -76,7 +76,7 @@ const GPTCard = ({ tool }) => {
               className="header-cont flex items-center mb-2"
               onClick={(e) => e.stopPropagation()}
             >
-              <h1 className="text-lg font-semibold whitespace-normal break-words">
+              <h1 className="text-lg font-semibold whitespace-normal break-words line-clamp-1">
                 {tool.title}
               </h1>
               <MdArrowOutward
@@ -84,7 +84,7 @@ const GPTCard = ({ tool }) => {
                 className="group-hover:opacity-100 opacity-0 ease-in-out duration-300 transition-all text-lg ml-3"
               />
             </a>
-            <div className="description text-xs text-gray-400 w-full whitespace-normal break-words line-clamp-4">
+            <div className="description text-xs text-gray-400 w-full whitespace-normal break-words line-clamp-2">
               {tool.text}
             </div>
           </div>

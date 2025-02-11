@@ -10,9 +10,9 @@ const ITEMS_PER_PAGE = 12; // Number of items to display per page
 
 const CardSkeleton = () => {
   return (
-    <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[15rem] overflow-hidden relative animate-pulse">
+    <div className="border border-[#202330] bg-[#11111e] rounded-xl w-full h-[17rem] overflow-hidden relative animate-pulse">
       {/* Header Section */}
-      <div className="absolute top-6 left-3 w-20 h-4 bg-[#2a2b35] rounded-md"></div>
+      <div className="absolute top-6 left-3 w-[90%] h-4 bg-[#2a2b35] rounded-md"></div>
       {/* <div className="absolute top-3 right-3 w-8 h-8 bg-[#2a2b35] rounded-md"></div> */}
 
       {/* Content Section */}

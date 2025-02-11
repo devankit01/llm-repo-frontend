@@ -42,7 +42,7 @@ const WebinarCardSkeleton = () => {
 // Skeleton for View More Button
 const ButtonSkeleton = () => {
   return (
-    <div className="w-36 h-10 bg-[#2a2b35] rounded-lg mx-auto animate-pulse"></div>
+    <div className="sm:w-[8.3rem] w-28 sm:h-10 h-9 bg-[#2a2b35] rounded-lg mx-auto animate-pulse"></div>
   );
 };
 
@@ -80,7 +80,7 @@ const WebinarSection = () => {
 
   return (
     <section className="py-20">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-5 sm:mb-10">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-3 md:mb-10 px-2">
         Upcoming Webinars
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:mb-16 mb-8">
@@ -103,7 +103,7 @@ const WebinarSection = () => {
         ) : (
           <Link
             to={"/llm-webinars"}
-            className="bg-[#7F89FF] text-[#11111e] px-6 py-2 rounded-lg transition-all duration-300 ease-in-out font-medium"
+            className="bg-[#7F89FF] text-[#11111e] sm:px-6 px-5 py-2 rounded-lg transition-all duration-300 ease-in-out font-medium sm:text-base text-sm"
           >
             View More
           </Link>

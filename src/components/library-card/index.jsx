@@ -88,7 +88,7 @@ const LibraryCard = ({ library }) => {
           </div>
           {/* Tags */}
           <ul className="tags flex flex-wrap gap-2 absolute bottom-4 left-0 sm:px-5 px-3.5 sm:mt-0 mt-3.5  w-full max-h-20">
-            {tagsArray.map((tag, index) => (
+            {tagsArray.slice(0,2).map((tag, index) => (
               <li
                 key={index}
                 className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md uppercase block"

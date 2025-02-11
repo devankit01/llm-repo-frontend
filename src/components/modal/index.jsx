@@ -27,9 +27,9 @@ const SiteWideModal = ({ isOpen, setIsOpen, children, className = "" }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 px-2.5">
+    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 px-2.5 py-5">
       <div
-        className="bg-[#202330] lg:p-6 p-4 rounded-lg max-w-2xl w-full shadow-lg max-h-[30rem] overflow-y-scroll relative"
+        className="bg-[#202330] lg:p-6 p-4 rounded-lg max-w-2xl w-full shadow-lg max-h-screen h-auto overflow-y-auto relative"
         ref={modalRef}
       >
         {/* <button
