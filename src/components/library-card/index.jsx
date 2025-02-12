@@ -24,7 +24,8 @@ const LibraryCard = ({ library }) => {
     setModalContent(
       <div>
         <h2 className="text-lg font-bold mb-4">{library.name}</h2>
-        <p className="text-gray-400 text-sm mb-3">{library.description}</p>
+        <p className="text-white text-sm mb-3">{library.title}</p>
+        <p className="text-gray-400 text-xs mb-3">{library.description}</p>
         <div className="tags flex flex-wrap gap-2 mb-8 left-0">
           {tagsArray.map((tag, index) => (
             <span
@@ -83,7 +84,7 @@ const LibraryCard = ({ library }) => {
               />
             </a>
             <div className="description text-xs line-clamp-4 text-gray-400">
-              {library.description}
+              {library.title}
             </div>
           </div>
           {/* Tags */}

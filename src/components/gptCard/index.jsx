@@ -23,7 +23,8 @@ const GPTCard = ({ tool }) => {
     setModalContent(
       <div>
         <h2 className="text-lg font-bold mb-4">{tool.title}</h2>
-        <p className="text-gray-400 text-sm mb-3">{tool.description}</p>
+        <p className="text-white text-sm mb-3">{tool.text}</p>
+        <p className="text-gray-400 text-xs mb-3">{tool.description}</p>
         <div className="tags flex flex-wrap gap-2 mb-8 left-0">
           {categoriesArray.map((category, index) => (
             <span

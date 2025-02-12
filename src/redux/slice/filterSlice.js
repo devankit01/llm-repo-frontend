@@ -99,10 +99,20 @@ const filterSlice = createSlice({
       state.filteredData = state.gpt.filter((item) => {
         const title =
           typeof item.title === "string" ? item.title.toLowerCase() : "";
-          const description = typeof item
+        const text =
+          typeof item.text === "string" ? item.text.toLowerCase() : "";
+        const description =
+          typeof item.description === "string"
+            ? item.description.toLowerCase()
+            : "";
+        // const description = typeof item
         // const category =
         //   typeof item.category === "string" ? item.category.toLowerCase() : "";
-        return title.includes(query);
+        return (
+          title.includes(query) ||
+          text.includes(query) ||
+          description.includes(query)
+        );
         // || category.includes(query);
       });
     },
@@ -111,9 +121,20 @@ const filterSlice = createSlice({
       state.filteredData = state.llmlibrary.filter((item) => {
         const name =
           typeof item.name === "string" ? item.name.toLowerCase() : "";
+        const title =
+          typeof item.title === "string" ? item.title.toLowerCase() : "";
+        const description =
+          typeof item.description === "string"
+            ? item.description.toLowerCase()
+            : "";
+
         // const tag =
         //   typeof item.tags === "string" ? item.tags.toLowerCase() : "";
-        return name.includes(query);
+        return (
+          name.includes(query) ||
+          title.includes(query) ||
+          description.includes(query)
+        );
         //  || tag.includes(query);
       });
     },
