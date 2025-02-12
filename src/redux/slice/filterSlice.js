@@ -99,6 +99,7 @@ const filterSlice = createSlice({
       state.filteredData = state.gpt.filter((item) => {
         const title =
           typeof item.title === "string" ? item.title.toLowerCase() : "";
+          const description = typeof item
         // const category =
         //   typeof item.category === "string" ? item.category.toLowerCase() : "";
         return title.includes(query);

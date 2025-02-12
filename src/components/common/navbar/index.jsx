@@ -4,6 +4,7 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { SiteWideModal } from "../../modal";
 import logo from "../../../assets/images/llm_repo_logo.png";
+import { LLMForm } from "../..";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false); // Main menu toggle
@@ -45,66 +46,9 @@ const Navbar = () => {
     // },
   ];
 
-  const modalContent = (
-    <form className="">
-      <h1 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-3 md:mb-10 text-center">
-        Submit your LLM
-      </h1>
-      <div className="frm-container mb-5">
-        <div className="element mb-4">
-          <label htmlFor="" className="text-[#888]">
-            Name
-          </label>
-          <input
-            type="text"
-            placeholder="john doe"
-            className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#444]"
-          />
-        </div>
-        <div className="element mb-4">
-          <label htmlFor="" className="text-[#888]">
-            Email
-          </label>
-          <input
-            type="email"
-            placeholder="john.doe@gmail.com"
-            className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#444]"
-          />
-        </div>
-        <div className="element mb-4">
-          <label htmlFor="" className="text-[#888]">
-            Message
-          </label>
-          <textarea
-            name="message"
-            placeholder="llm description"
-            rows={2}
-            className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#444] resize-none"
-          ></textarea>
-        </div>
-        <div className="element mb-4">
-          <label htmlFor="" className="text-[#888]">
-            LLM link
-          </label>
-          <input
-            type="url"
-            placeholder="https://johndoe.ai"
-            className="w-full bg-[#11111e] px-4 py-2.5 rounded-xl border border-transparent outline-none hover:border-[#7F89FF] focus:border-[#7F89FF] ease-in-out duration-200 transition-all placeholder:text-[#444]"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full  py-3.5 block bg-white text-[#202330] rounded-xl font-semibold transition-all duration-200 hover:opacity-90"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  );
-
   return (
     <>
-      <nav className="w-screen flex items-center justify-center !bg-[#202330] shadow shadow-black/30 border-b border-b-[#202330] fixed z-50">
+      <nav className="w-screen flex items-center justify-center !bg-[#202330] shadow shadow-black/30 border-b border-b-[#202330] fixed z-[10000]">
         <div className="mx-auto max-w-[100rem] w-full px-[3%] py-3 text-white flex items-center justify-between">
           {/* Logo */}
           <div className="logo z-50">
@@ -125,19 +69,19 @@ const Navbar = () => {
             } flex sm:flex-row flex-col items-center sm:justify-between justify-center gap-x-2 sm:space-y-0 space-y-3 text-sm sm:relative absolute left-0 top-0 sm:w-auto w-full sm:min-h-full min-h-screen sm:px-0 px-5 sm:bg-transparent bg-[#11111e] ease-in-out transition-all duration-200`}
           >
             {links.map((link) => (
-              <li key={link.path} className="group">
+              <li key={link.path} className="group sm:w-fit w-full">
                 {/* Check if the link has sublinks */}
                 {link.subLink.length ? (
                   <>
                     <div
-                      className={`cursor-pointer hover:bg-white/10 duration-200 ease-in-out transition-all px-7 py-3.5 font-semibold rounded-lg block relative sm:flex sm:items-center ${
+                      className={`cursor-pointer sm:hover:bg-white/10 sm:text-left text-center duration-200 ease-in-out transition-all px-7 py-3.5 font-semibold rounded-lg block relative sm:flex sm:items-center ${
                         showSubLinks && toggle
                           ? "bg-[#11111e] sm:bg-transparent"
                           : ""
                       }`}
-                      onClick={() => toggle && setShowSubLinks(!showSubLinks)} // Toggle dropdown in small screens
+                      onClick={() => toggle && setShowSubLinks(!showSubLinks)}
                     >
-                      <span className="flex items-center">
+                      <span className="flex items-center justify-center text-center">
                         {link.name}{" "}
                         <IoIosArrowDown
                           className={`ml-1.5 ${
@@ -175,7 +119,7 @@ const Navbar = () => {
                   <Link
                     to={link.path}
                     onClick={() => setToggle(false)}
-                    className="px-7 py-3.5 font-semibold rounded-lg block hover:bg-white/10 duration-200 ease-in-out transition-all"
+                    className="px-7 py-3.5 font-semibold rounded-lg block sm:hover:bg-white/10 duration-200 ease-in-out transition-all text-center"
                   >
                     {link.name}
                   </Link>
@@ -209,7 +153,9 @@ const Navbar = () => {
         setIsOpen={setIsModalOpen}
         className="hidden"
       >
-        {modalContent}
+        <>
+          <LLMForm />
+        </>
       </SiteWideModal>
     </>
   );

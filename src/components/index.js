@@ -15,6 +15,7 @@ import { LibrarySection } from "./library-section";
 import { Library } from "./library";
 import { Footer, Navbar } from "./common";
 import { DividedLayout } from "./divided-layout";
+import { LLMForm } from "./llm-form";
 
 export {
   Layout,
@@ -35,4 +36,5 @@ export {
   Navbar,
   Footer,
   DividedLayout,
+  LLMForm,
 };

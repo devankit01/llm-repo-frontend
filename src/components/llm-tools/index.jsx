@@ -132,7 +132,10 @@ const LLMTools = () => {
         {llmtool.length > ITEMS_PER_PAGE && location.pathname !== "/" && (
           <div className="pagination flex justify-center mt-6">
             <Pagination
-              count={Math.ceil(llmtool.length / ITEMS_PER_PAGE)}
+              count={Math.ceil(
+                (searchText === "" ? llmtool.length : filteredData.length) /
+                  ITEMS_PER_PAGE
+              )}
               page={currentPage}
               onChange={handlePageChange}
               color="primary"

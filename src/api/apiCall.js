@@ -83,3 +83,12 @@ export const llmLibs = async () => {
     handleError(error);
   }
 };
+
+export const toolSubmit = async (data) => {
+  try {
+    const response = await apiClient.post("/send-email", data);
+    return response.data;
+  } catch (error) {
+    handleError(error);
+  }
+};
