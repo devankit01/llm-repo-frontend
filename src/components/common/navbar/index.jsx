@@ -94,7 +94,7 @@ const Navbar = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-[#7F89FF] text-[#fff] px-4 py-2.5 rounded-xl font-semibold transition-all duration-200 hover:opacity-90"
+          className="w-full  py-3.5 block bg-white text-[#202330] rounded-xl font-semibold transition-all duration-200 hover:opacity-90"
         >
           Submit
         </button>

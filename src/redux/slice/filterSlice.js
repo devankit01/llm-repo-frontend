@@ -99,19 +99,21 @@ const filterSlice = createSlice({
       state.filteredData = state.gpt.filter((item) => {
         const title =
           typeof item.title === "string" ? item.title.toLowerCase() : "";
-        const category =
-          typeof item.category === "string" ? item.category.toLowerCase() : "";
-        return title.includes(query) || category.includes(query);
+        // const category =
+        //   typeof item.category === "string" ? item.category.toLowerCase() : "";
+        return title.includes(query);
+        // || category.includes(query);
       });
     },
     librarySearch: (state, action) => {
       const query = action.payload.toLowerCase();
-      state.filteredData = state.fetchedData.filter((item) => {
+      state.filteredData = state.llmlibrary.filter((item) => {
         const name =
           typeof item.name === "string" ? item.name.toLowerCase() : "";
-        const tag =
-          typeof item.tags === "string" ? item.tags.toLowerCase() : "";
-        return name.includes(query) || tag.includes(query);
+        // const tag =
+        //   typeof item.tags === "string" ? item.tags.toLowerCase() : "";
+        return name.includes(query);
+        //  || tag.includes(query);
       });
     },
     setTag: (state, action) => {
