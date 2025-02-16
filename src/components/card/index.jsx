@@ -64,7 +64,14 @@ const Card = ({ tool }) => {
         onClick={openModal}
       >
         <div className="absolute w-full flex justify-between items-center top-6 px-4">
-          <span className="text-xs font-semibold text-[#7F89FF] ml-auto">
+          <span
+            className={
+              (tool.is_sponsor
+                ? " border-[#7F89FF]/50"
+                : "border-transparent") +
+              ` text-[11px] font-medium text-[#7F89FF] ml-auto border px-1.5 py-0.5 rounded-md tracking-wider`
+            }
+          >
             {tool.is_sponsor ? "SPONSORED" : ""}
           </span>
         </div>
