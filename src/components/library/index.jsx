@@ -85,7 +85,7 @@ const Library = () => {
 
   return (
     <section className="mb-14">
-      <div className="header mb-8">
+      <div className="header mb-8 md:px-0 px-2">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-3 md:mb-10">
           Explore Top Libraries
         </h1>

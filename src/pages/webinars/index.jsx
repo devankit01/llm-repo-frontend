@@ -70,7 +70,7 @@ const Webinars = () => {
     <div className="min-h-screen bg-[#11111e] px-10 py-16 w-full max-w-[100rem] mx-auto">
       <h1 className="text-3xl font-bold text-white mb-8">Upcoming Webinars</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-10 mx-auto min-h-screen">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-10 mx-auto">
         {/* If loading, show skeletons */}
         {loading
           ? Array(4)

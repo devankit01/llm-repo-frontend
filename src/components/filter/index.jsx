@@ -103,21 +103,21 @@ const Filter = () => {
 
           {isTagsVisible && (
             <div>
-              <ul className="flex flex-wrap gap-x-2 gap-y-2">
+              <ul className="flex lg:flex-wrap gap-x-2 gap-y-2 lg:overflow-x-hidden overscroll-x-scoll py-1 px-1">
                 {(showAllTags ? tags : tags.slice(0, 10)).map(
                   (tag, i) =>
                     tag !== undefined && (
-                      <li
-                        key={i}
-                        onClick={() => handleTagClick(tag)}
-                        className={`border border-gray-600 px-3 py-1 rounded-md text-xs cursor-pointer ease-in-out duration-200 transition-all
+                      <li key={i} onClick={() => handleTagClick(tag)}>
+                        <span
+                          className={`border border-gray-600 px-3 py-1 rounded-md text-xs cursor-pointer ease-in-out duration-200 transition-all
                     ${
                       tagList.includes(tag.toLowerCase())
                         ? "bg-[#7F89FF]/5 text-[#7F89FF] border-[#7F89FF]"
                         : "hover:text-[#7F89FF] hover:bg-[#7F89FF]/5 hover:border-[#7F89FF]"
                     }`}
-                      >
-                        {tag?.toUpperCase()}
+                        >
+                          {tag?.toUpperCase()}
+                        </span>
                       </li>
                     )
                 )}
