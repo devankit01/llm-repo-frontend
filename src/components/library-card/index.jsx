@@ -56,45 +56,46 @@ const LibraryCard = ({ library }) => {
         className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[11rem] relative overflow-hidden group cursor-pointer"
         onClick={openModal} // Open the modal with updated content
       >
-        <div className="absolute w-full flex justify-between items-center top-6 px-4">
-          <span className={
-              (library.sponsor
-                ? " border-[#7F89FF]/50"
-                : "border-transparent") +
-              ` text-[11px] font-medium text-[#7F89FF] ml-auto border px-1.5 py-0.5 rounded-md tracking-wider`
-            }>
-            {library.sponsor == true || library.sponsor == "TRUE"
-              ? "SPONSORED"
-              : ""}
-          </span>
-        </div>
-
         {/* Content */}
         <div className="lower-part sm:p-5 p-3.5 bg-gradient-to-t from-[#202330] to-transparent">
           {/* Title */}
           <div className="">
-            <a
-              href={library.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="header-cont flex items-center mb-2.5"
-              onClick={(e) => e.stopPropagation()} // Prevent card click from triggering modal
-            >
-              <h1 className="text-lg font-semibold line-clamp-1">
-                {library?.name}
-              </h1>
-              <MdArrowOutward
-                fill="#7F89FF"
-                className="group-hover:opacity-100 opacity-0 ease-in-out duration-300 transition-all text-lg ml-3"
-              />
-            </a>
+            <div className=" flex justify-between">
+              <a
+                href={library.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-cont flex items-center mb-2.5"
+                onClick={(e) => e.stopPropagation()} // Prevent card click from triggering modal
+              >
+                <h1 className="text-lg font-semibold line-clamp-1">
+                  {library?.name}
+                </h1>
+                <MdArrowOutward
+                  fill="#7F89FF"
+                  className="group-hover:opacity-100 opacity-0 ease-in-out duration-300 transition-all text-lg ml-3"
+                />
+              </a>
+              <span
+                className={
+                  ((library.sponsor == true || library.sponsor == "TRUE")
+                    ? "block "
+                    : "hidden") +
+                  ` border-[#7F89FF]/50 text-[10px] shadow-[0_0_10px_rgba(127,137,255,1)] font-medium text-[#000] border px-1.5 py-0.5 rounded-md tracking-wider bg-[#7F89FF] h-fit mt-0.5`
+                }
+              >
+                {(library.sponsor == true || library.sponsor == "TRUE")
+                  ? "SPONSORED"
+                  : ""}
+              </span>
+            </div>
             <div className="description text-xs line-clamp-4 text-gray-400">
               {library.title}
             </div>
           </div>
           {/* Tags */}
           <ul className="tags flex flex-wrap gap-2 absolute bottom-4 left-0 sm:px-5 px-3.5 sm:mt-0 mt-3.5  w-full max-h-20">
-            {tagsArray.slice(0,2).map((tag, index) => (
+            {tagsArray.slice(0, 2).map((tag, index) => (
               <li
                 key={index}
                 className="bg-[#7F89FF]/10 border border-[#7F89FF]/50 text-white text-[10px] px-2 py-1 rounded-md uppercase block"

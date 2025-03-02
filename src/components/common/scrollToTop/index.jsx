@@ -17,10 +17,10 @@ const ScrollToTop = () => {
 
   return (
     <>
-      <div ref={topRef} className=" fixed top-0 left-0 z-[1000]" />
+      <div ref={topRef} className=" fixed top-0 left-0" />
       <button
         onClick={handleScrollToTop}
-        className="fixed right-10 bottom-10 bg-[#7f89ff] text-[#11111e] w-10 h-10 flex justify-center items-center rounded-md z-[1000]"
+        className="fixed right-10 bottom-10 bg-[#7f89ff] text-[#11111e] w-10 h-10 flex justify-center items-center rounded-md z-10"
       >
         <FaArrowUp className=" text-lg" fill="#11111e" />
       </button>

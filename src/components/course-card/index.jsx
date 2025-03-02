@@ -35,23 +35,12 @@ const CourseCard = ({ course }) => {
         onClick={openModal}
         className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[9rem] flex flex-col justify-between relative overflow-hidden cursor-pointer group"
       >
-        <div className="absolute w-full flex justify-between items-center top-6 px-4">
-          <span className={
-              (course.sponsor
-                ? " border-[#7F89FF]/50"
-                : "border-transparent") +
-              ` text-[11px] font-medium text-[#7F89FF] ml-auto border px-1.5 py-0.5 rounded-md tracking-wider`
-            }>
-            {course.sponsor == true || course.sponsor == "TRUE"
-              ? "SPONSORED"
-              : ""}
-          </span>
-        </div>
+        <div className="absolute w-full flex justify-between items-center top-6 px-4"></div>
 
         {/* Content */}
         <div className="p-4 flex flex-col h-full">
           {/* Heading with Arrow */}
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between">
             <a
               href={course.url}
               target="_blank"
@@ -67,6 +56,18 @@ const CourseCard = ({ course }) => {
                 className="group-hover:opacity-100 opacity-0 ease-in-out duration-300 transition-all text-lg ml-3"
               /> */}
             </a>
+            <span
+              className={
+                ((course.sponsor == true || course.sponsor == "TRUE")
+                  ? "block"
+                  : "hidden") +
+                ` border-[#7F89FF]/50 text-[10px] shadow-[0_0_10px_rgba(127,137,255,1)] font-medium text-[#000] border px-1.5 py-0.5 rounded-md tracking-wider bg-[#7F89FF] h-fit mt-0.5`
+              }
+            >
+              {(course.sponsor == true || course.sponsor == "TRUE")
+                ? "SPONSORED"
+                : ""}
+            </span>
           </div>
 
           {/* Text Below Heading */}

@@ -48,7 +48,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-screen flex items-center justify-center !bg-[#202330] shadow shadow-black/30 border-b border-b-[#202330] fixed z-[10000]">
+      <nav className="w-screen flex items-center justify-center !bg-[#202330] shadow shadow-black/30 border-b border-b-[#202330] fixed z-50">
         <div className="mx-auto max-w-[100rem] w-full px-[3%] py-3 text-white flex items-center justify-between">
           {/* Logo */}
           <div className="logo z-50">
@@ -97,7 +97,7 @@ const Navbar = () => {
                         } sm:group-hover:block sm:absolute sm:top-12 sm:left-0 sm:bg-[#202330] sm:rounded-lg sm:w-max sm:overflow-hidden sm:shadow sm:shadow-black/30 sm:opacity-0 sm:invisible sm:group-hover:opacity-100 sm:group-hover:visible ease-in-out sm:duration-200 sm:transition-all`}
                       >
                         <ul
-                          className={`${toggle ? "block" : "hidden"} sm:block`}
+                          className={`${toggle ? "block mt-8" : "hidden"} sm:block`}
                         >
                           {link.subLink.map((sublink) => (
                             <li key={sublink.name} className="w-full">

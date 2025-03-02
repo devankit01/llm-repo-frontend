@@ -56,22 +56,9 @@ const WebinarCard = ({ webinar }) => {
         className="bg-[#202330] border border-transparent hover:border-[#7F89FF] rounded-xl hover:scale-[1.02] transition-all ease-in-out duration-300 w-full h-[17rem] flex flex-col justify-between relative overflow-hidden group cursor-pointer"
         onClick={openModal} // Open the modal with updated content
       >
-        {" "}
-        <div className="absolute w-full flex justify-between items-center top-6 px-4">
-          <span className={
-              (webinar.sponsor
-                ? " border-[#7F89FF]/50"
-                : "border-transparent") +
-              ` text-[11px] font-medium text-[#7F89FF] ml-auto border px-1.5 py-0.5 rounded-md tracking-wider`
-            }>
-            {webinar.sponsor == true || webinar.sponsor == "TRUE"
-              ? "SPONSORED"
-              : ""}
-          </span>
-        </div>
         <div className="p-4 flex flex-col h-full">
           {/* Webinar Title */}
-          <div className="flex items-start">
+          <div className="flex justify-between items-start">
             <a
               href={webinar.url}
               target="_blank"
@@ -83,6 +70,18 @@ const WebinarCard = ({ webinar }) => {
                 {webinar.title}
               </h1>
             </a>
+            <span
+              className={
+                (webinar.sponsor == true || webinar.sponsor == "TRUE"
+                  ? "block "
+                  : "hidden") +
+                ` border-[#7F89FF]/50 text-[10px] shadow-[0_0_10px_rgba(127,137,255,1)] font-medium text-[#000] border px-1.5 py-0.5 rounded-md tracking-wider bg-[#7F89FF] h-fit mt-0.5`
+              }
+            >
+              {webinar.sponsor == true || webinar.sponsor == "TRUE"
+                ? "SPONSORED"
+                : ""}
+            </span>
           </div>
 
           {/* Description with line-clamp */}

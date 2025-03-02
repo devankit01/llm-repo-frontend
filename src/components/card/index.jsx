@@ -63,36 +63,39 @@ const Card = ({ tool }) => {
         className="border border-transparent hover:border-[#7F89FF] bg-[#202330] rounded-xl hover:scale-[1.02] ease-in-out duration-300 transition-all w-full h-[17rem] relative overflow-hidden group cursor-pointer"
         onClick={openModal}
       >
-        <div className="absolute w-full flex justify-between items-center top-6 px-4">
-          <span
-            className={
-              (tool.is_sponsor
-                ? " border-[#7F89FF]/50"
-                : "border-transparent") +
-              ` text-[11px] font-medium text-[#7F89FF] ml-auto border px-1.5 py-0.5 rounded-md tracking-wider`
-            }
-          >
-            {tool.is_sponsor ? "SPONSORED" : ""}
-          </span>
-        </div>
-
         {/* Content */}
         <div className="lower-part sm:p-5 p-3.5 bg-gradient-to-t from-[#202330] to-transparent">
           {/* Source */}
           <div className="">
-            <a
-              href={tool.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="header-cont flex items-center mb-2.5 w-max"
-              onClick={(e) => e.stopPropagation()} // Prevent card click from triggering modal
-            >
-              <h1 className="text-lg font-semibold">{tool.source}</h1>
-              <MdArrowOutward
-                fill="#7F89FF"
-                className="group-hover:opacity-100 opacity-0 ease-in-out duration-300 transition-all text-lg ml-3"
-              />
-            </a>
+            <div className=" flex justify-between">
+              <a
+                href={tool.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-cont flex items-center mb-2.5 w-max"
+                onClick={(e) => e.stopPropagation()} // Prevent card click from triggering modal
+              >
+                <h1 className="text-lg font-semibold">{tool.source}</h1>
+                <MdArrowOutward
+                  fill="#7F89FF"
+                  className="group-hover:opacity-100 opacity-0 ease-in-out duration-300 transition-all text-lg ml-3"
+                />
+              </a>
+              <span
+                className={
+                  (tool.is_sponsor === true ||
+                  tool.is_sponsor.toLowerCase() === "true"
+                    ? "block "
+                    : "hidden") +
+                  ` border-[#7F89FF]/50 text-[10px] shadow-[0_0_10px_rgba(127,137,255,1)] font-medium text-[#000] border px-1.5 py-0.5 rounded-md tracking-wider bg-[#7F89FF] h-fit mt-0.5`
+                }
+              >
+                {tool.is_sponsor === true ||
+                tool.is_sponsor.toLowerCase() === "true"
+                  ? "SPONSORED"
+                  : ""}
+              </span>
+            </div>
             <div className="description text-xs line-clamp-4 text-gray-400">
               {tool.description}
             </div>
