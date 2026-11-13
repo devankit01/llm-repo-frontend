@@ -1,0 +1,11 @@
+{
+  "id": "meditron-7b",
+  "name": "Meditron 7B",
+  "developer": "EPFL",
+  "params_b": 7,
+  "license": "Llama 2 Community License",
+  "license_type": "open-weights",
+  "ollama": "meditron:7b",
+  "hf": "epfl-llm/meditron-7b",
+  "medical_tuned": true
+}

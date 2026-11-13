@@ -1,0 +1,11 @@
+{
+  "id": "phi3.5-mini",
+  "name": "Phi-3.5 Mini",
+  "developer": "Microsoft",
+  "params_b": 3.8,
+  "license": "MIT",
+  "license_type": "open-source",
+  "ollama": "phi3.5:3.8b",
+  "hf": "microsoft/Phi-3.5-mini-instruct",
+  "medical_tuned": false
+}

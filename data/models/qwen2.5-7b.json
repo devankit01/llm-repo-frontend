@@ -1,0 +1,11 @@
+{
+  "id": "qwen2.5-7b",
+  "name": "Qwen2.5 7B Instruct",
+  "developer": "Alibaba Cloud",
+  "params_b": 7,
+  "license": "Apache-2.0",
+  "license_type": "open-source",
+  "ollama": "qwen2.5:7b",
+  "hf": "Qwen/Qwen2.5-7B-Instruct",
+  "medical_tuned": false
+}

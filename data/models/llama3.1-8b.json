@@ -1,0 +1,11 @@
+{
+  "id": "llama3.1-8b",
+  "name": "Llama 3.1 8B",
+  "developer": "Meta",
+  "params_b": 8,
+  "license": "Llama 3.1 Community License",
+  "license_type": "open-weights",
+  "ollama": "llama3.1:8b",
+  "hf": "meta-llama/Llama-3.1-8B-Instruct",
+  "medical_tuned": false
+}

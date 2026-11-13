@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM Repo · Health & Security Evals</title>
+<meta name="description" content="An open leaderboard of open-source LLMs, evaluated for healthcare and security on openly licensed datasets. Add your own model with one pull request.">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="styles.css">
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+</head>
+<body>
+<a class="skip" href="#board">Skip to leaderboard</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true">◧</span> LLM Repo <small>Health &amp; Security Evals</small></a>
+    <nav aria-label="Main">
+      <a href="#board">Leaderboard</a>
+      <a href="#evals">Evals</a>
+      <a href="#add">Add a model</a>
+      <a class="gh" href="https://github.com/devankit01/llm-repo-frontend" target="_blank" rel="noopener">GitHub</a>
+      <button id="theme" class="icon" type="button" aria-label="Switch colour theme"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <p class="eyebrow">Open source · Open data · Run it yourself</p>
+    <h1>Which open LLM can you trust with health data?</h1>
+    <p class="lede">An open leaderboard of open-source language models, scored on healthcare tasks using openly licensed datasets. Every number here comes from a run anyone can repeat on their own machine.</p>
+    <div class="cta">
+      <a class="btn primary" href="#board">See the leaderboard</a>
+      <a class="btn" href="#add">Add a model</a>
+    </div>
+    <dl class="counts" id="counts" aria-label="What is in the repo"></dl>
+  </section>
+
+  <section class="wrap" id="board" aria-labelledby="board-h">
+    <div class="sec-head">
+      <h2 id="board-h">Leaderboard</h2>
+      <div class="tabs" id="domains" role="tablist" aria-label="Domain"></div>
+    </div>
+
+    <div id="notice"></div>
+
+    <div id="health-view">
+      <div class="controls">
+        <input id="q" type="search" placeholder="Search models" aria-label="Search models">
+        <select id="lic" aria-label="Licence type">
+          <option value="all">All licences</option>
+          <option value="open-source">Open source</option>
+          <option value="open-weights">Open weights</option>
+        </select>
+        <label class="check"><input id="med" type="checkbox"> Medical models only</label>
+      </div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Leaderboard table, scrolls sideways on small screens">
+        <table id="table"></table>
+      </div>
+      <p class="fine" id="rating-note"></p>
+    </div>
+
+    <div id="security-view" hidden></div>
+  </section>
+
+  <section class="wrap" id="evals" aria-labelledby="evals-h">
+    <div class="sec-head"><h2 id="evals-h">What gets measured</h2></div>
+    <p class="intro">Each eval asks a fixed number of questions sampled with a fixed seed, at temperature 0. Open an eval to see an example of what the model is asked and what counts as right.</p>
+    <div class="cards" id="eval-cards"></div>
+    <p class="fine">Examples are written for this page to show the format. They are not rows from the datasets. Dataset licences are as listed on each dataset card; check the card before reusing the data.</p>
+  </section>
+
+  <section class="wrap" id="add" aria-labelledby="add-h">
+    <div class="sec-head"><h2 id="add-h">Add a model</h2></div>
+    <p class="intro">Any open model that runs in Ollama can be listed. You need Python 3.10 or newer, Ollama, and a GitHub account.</p>
+    <ol class="steps">
+      <li>
+        <h3>Describe the model</h3>
+        <p>Fork the repo and add one file in <code>data/models/</code>. The file name is the model's id.</p>
+<pre><code>// data/models/my-model-7b.json
+{
+  "id": "my-model-7b",
+  "name": "My Model 7B",
+  "developer": "Who released it",
+  "params_b": 7,
+  "license": "Apache-2.0",
+  "license_type": "open-source",
+  "ollama": "my-model:7b",
+  "hf": "org/my-model-7b",
+  "medical_tuned": false
+}</code></pre>
+      </li>
+      <li>
+        <h3>Run the evals</h3>
+        <p>Pull the model, then run the eval script. It downloads the datasets, asks the questions, and writes a results file.</p>
+<pre><code>pip install -r evals/requirements.txt
+ollama pull my-model:7b
+python evals/run_eval.py --model my-model-7b \
+  --hardware "M2 Pro, 16 GB" --submitted-by your-handle</code></pre>
+      </li>
+      <li>
+        <h3>Check it</h3>
+        <p>Validate the data and look at the site locally before you send it.</p>
+<pre><code>npm run check
+npm start</code></pre>
+      </li>
+      <li>
+        <h3>Open a pull request</h3>
+        <p>Commit the model file and <code>data/results/my-model-7b.json</code>. Keep the default sample count and seed so your scores are comparable with the others.</p>
+      </li>
+    </ol>
+    <p class="intro">The full guide, including how to list a model without scores and how to propose a new eval, is in <a href="https://github.com/devankit01/llm-repo-frontend/blob/main/docs/ADDING_A_MODEL.md" target="_blank" rel="noopener">docs/ADDING_A_MODEL.md</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p><strong>Not medical advice, and not clinical validation.</strong> A high score on these evals does not make a model safe to use in patient care. Scores come from small samples and are submitted by contributors.</p>
+    <p>MIT licensed. <a href="https://github.com/devankit01/llm-repo-frontend" target="_blank" rel="noopener">Source on GitHub</a> · <span id="built"></span></p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

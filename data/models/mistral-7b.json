@@ -1,0 +1,11 @@
+{
+  "id": "mistral-7b",
+  "name": "Mistral 7B Instruct",
+  "developer": "Mistral AI",
+  "params_b": 7,
+  "license": "Apache-2.0",
+  "license_type": "open-source",
+  "ollama": "mistral:7b",
+  "hf": "mistralai/Mistral-7B-Instruct-v0.3",
+  "medical_tuned": false
+}

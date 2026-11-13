@@ -1,0 +1,205 @@
+{
+  "domains": [
+    {
+      "id": "health",
+      "name": "Healthcare",
+      "status": "active",
+      "summary": "Seven scored evals and one speed measurement, all on openly licensed datasets."
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "status": "planned",
+      "summary": "Eval definitions are being drafted. No scores yet."
+    }
+  ],
+  "rating": {
+    "method": "Unweighted mean of the seven scored health evals, each on a 0 to 100 scale. Shown only when all seven have been run.",
+    "grades": [
+      { "grade": "A", "min": 85 },
+      { "grade": "B", "min": 70 },
+      { "grade": "C", "min": 55 },
+      { "grade": "D", "min": 40 },
+      { "grade": "E", "min": 0 }
+    ]
+  },
+  "evals": [
+    {
+      "id": "med-knowledge",
+      "domain": "health",
+      "name": "Medical knowledge",
+      "short": "Knowledge",
+      "rated": true,
+      "measures": "Recall of medical facts across subjects such as anatomy, pharmacology and pathology, as four-option multiple-choice questions.",
+      "dataset": { "name": "MedMCQA", "hf": "openlifescienceai/medmcqa", "split": "validation", "license": "Apache-2.0" },
+      "metric": "Accuracy",
+      "scoring": "The model must answer with one letter. A reply with no clear letter counts as wrong.",
+      "example": {
+        "prompt": "Which vitamin deficiency causes scurvy?\nA. Vitamin A\nB. Vitamin B12\nC. Vitamin C\nD. Vitamin D\n\nAnswer with one letter.",
+        "expected": "C"
+      }
+    },
+    {
+      "id": "clinical-reasoning",
+      "domain": "health",
+      "name": "Clinical reasoning",
+      "short": "Reasoning",
+      "rated": true,
+      "measures": "Working from a patient vignette to a diagnosis or next step, in the style of medical licensing exams.",
+      "dataset": { "name": "MedQA (USMLE, 4 options)", "hf": "GBaker/MedQA-USMLE-4-options", "split": "test", "license": "CC BY 4.0" },
+      "metric": "Accuracy",
+      "scoring": "The model must answer with one letter. A reply with no clear letter counts as wrong.",
+      "example": {
+        "prompt": "A 58-year-old man has had crushing chest pain radiating to his left arm for 40 minutes, with sweating. The ECG shows ST-segment elevation in leads II, III and aVF. Which coronary artery is most likely occluded?\nA. Left anterior descending\nB. Left circumflex\nC. Right coronary\nD. Left main\n\nAnswer with one letter.",
+        "expected": "C"
+      }
+    },
+    {
+      "id": "evidence-reasoning",
+      "domain": "health",
+      "name": "Evidence reasoning",
+      "short": "Evidence",
+      "rated": true,
+      "measures": "Reading a research abstract and deciding whether it supports a yes, no or maybe answer to a question.",
+      "dataset": { "name": "PubMedQA (expert-labelled)", "hf": "qiaojin/PubMedQA", "config": "pqa_labeled", "split": "train", "license": "MIT" },
+      "metric": "Accuracy",
+      "scoring": "The model must answer yes, no or maybe. Anything else counts as wrong.",
+      "example": {
+        "prompt": "Abstract: In a randomised trial of 400 adults with mild hypertension, the group assigned to 30 minutes of brisk walking five days a week had a mean systolic blood pressure reduction of 6 mmHg at 12 weeks, compared with 1 mmHg in the control group (p < 0.001).\n\nQuestion: Does regular brisk walking lower systolic blood pressure in adults with mild hypertension?\n\nAnswer yes, no or maybe.",
+        "expected": "yes"
+      }
+    },
+    {
+      "id": "claim-verification",
+      "domain": "health",
+      "name": "Health claim verification",
+      "short": "Claims",
+      "rated": true,
+      "measures": "Judging whether a public health claim is true, false, a mixture, or unproven. A proxy for how readily a model repeats health misinformation.",
+      "dataset": { "name": "PubHealth", "hf": "ImperialCollegeLondon/health_fact", "split": "test", "license": "MIT" },
+      "metric": "Accuracy",
+      "scoring": "The model must answer with one of the four labels. Rows with a missing label are skipped.",
+      "example": {
+        "prompt": "Claim: Antibiotics are effective against the common cold.\n\nIs this claim true, false, mixture or unproven? Answer with one word.",
+        "expected": "false"
+      }
+    },
+    {
+      "id": "entity-extraction",
+      "domain": "health",
+      "name": "Disease extraction",
+      "short": "Extraction",
+      "rated": true,
+      "measures": "Pulling every disease mention out of a passage of biomedical text, the core step in turning notes into structured data.",
+      "dataset": { "name": "NCBI Disease", "hf": "ncbi/ncbi_disease", "split": "test", "license": "CC0-1.0" },
+      "metric": "F1",
+      "scoring": "Predicted and gold mentions are lower-cased and compared as sets per passage. Precision and recall are pooled over all passages, then combined into F1.",
+      "example": {
+        "prompt": "List every disease mentioned in the text as JSON in the form {\"diseases\": [\"...\"]}.\n\nText: The patient has a history of type 2 diabetes mellitus and was admitted with community-acquired pneumonia.",
+        "expected": "{\"diseases\": [\"type 2 diabetes mellitus\", \"community-acquired pneumonia\"]}"
+      }
+    },
+    {
+      "id": "json-reliability",
+      "domain": "health",
+      "name": "Structured output reliability",
+      "short": "JSON",
+      "rated": true,
+      "measures": "How often the model returns valid JSON in the requested shape, with no extra prose. A model that extracts well but breaks the format is hard to use in a pipeline.",
+      "dataset": { "name": "Replies from the disease extraction eval", "hf": null, "license": "No extra data" },
+      "metric": "Valid replies (%)",
+      "scoring": "A reply passes only if the whole reply parses as JSON and has a \"diseases\" key holding a list of strings. Markdown code fences are allowed.",
+      "example": {
+        "prompt": "List every disease mentioned in the text as JSON in the form {\"diseases\": [\"...\"]}.\n\nText: She uses an inhaler for asthma.",
+        "expected": "Passes: {\"diseases\": [\"asthma\"]}\nFails: Sure! The diseases are: asthma"
+      }
+    },
+    {
+      "id": "consistency",
+      "domain": "health",
+      "name": "Answer consistency",
+      "short": "Consistency",
+      "rated": true,
+      "measures": "Whether the model gives the same answer when the options are shuffled. A model that changes its answer with the order is guessing.",
+      "dataset": { "name": "Questions from the medical knowledge eval", "hf": "openlifescienceai/medmcqa", "split": "validation", "license": "Apache-2.0" },
+      "metric": "Consistent answers (%)",
+      "scoring": "Each question is asked twice with the options in different orders. It counts as consistent when both replies pick the same underlying option, whether or not that option is correct.",
+      "example": {
+        "prompt": "First ask:\nA. Vitamin A  B. Vitamin B12  C. Vitamin C  D. Vitamin D\n\nSecond ask:\nA. Vitamin C  B. Vitamin D  C. Vitamin A  D. Vitamin B12",
+        "expected": "Consistent: C, then A (both mean Vitamin C)\nInconsistent: C, then C"
+      }
+    },
+    {
+      "id": "speed",
+      "domain": "health",
+      "name": "Speed",
+      "short": "Speed",
+      "rated": false,
+      "measures": "Generated tokens per second, as reported by Ollama across the whole run.",
+      "dataset": { "name": "All prompts in the run", "hf": null, "license": "No extra data" },
+      "metric": "Tokens per second",
+      "scoring": "Not part of the health rating. Speed depends on hardware, so compare only runs made on the same machine.",
+      "example": null
+    },
+    {
+      "id": "prompt-injection",
+      "domain": "security",
+      "name": "Prompt injection resistance",
+      "short": "Injection",
+      "rated": false,
+      "measures": "Whether instructions hidden in a document or tool result can override the task the model was given.",
+      "dataset": null,
+      "metric": "To be decided",
+      "scoring": "Planned. An openly licensed dataset has not been chosen yet.",
+      "example": null
+    },
+    {
+      "id": "secure-code",
+      "domain": "security",
+      "name": "Secure code generation",
+      "short": "Secure code",
+      "rated": false,
+      "measures": "How often generated code contains common weaknesses such as injection flaws or hard-coded secrets.",
+      "dataset": null,
+      "metric": "To be decided",
+      "scoring": "Planned. An openly licensed dataset has not been chosen yet.",
+      "example": null
+    },
+    {
+      "id": "vuln-knowledge",
+      "domain": "security",
+      "name": "Vulnerability knowledge",
+      "short": "Vuln knowledge",
+      "rated": false,
+      "measures": "Recall of security concepts: weakness classes, attack techniques and standard mitigations.",
+      "dataset": null,
+      "metric": "To be decided",
+      "scoring": "Planned. An openly licensed dataset has not been chosen yet.",
+      "example": null
+    },
+    {
+      "id": "data-leakage",
+      "domain": "security",
+      "name": "Personal data leakage",
+      "short": "Leakage",
+      "rated": false,
+      "measures": "Whether the model repeats personal identifiers from its context when asked to summarise or answer without them.",
+      "dataset": null,
+      "metric": "To be decided",
+      "scoring": "Planned. An openly licensed dataset has not been chosen yet.",
+      "example": null
+    },
+    {
+      "id": "harmful-refusal",
+      "domain": "security",
+      "name": "Harmful request refusal",
+      "short": "Refusal",
+      "rated": false,
+      "measures": "Whether the model declines requests for clearly harmful help, such as working malware, while still answering defensive questions.",
+      "dataset": null,
+      "metric": "To be decided",
+      "scoring": "Planned. An openly licensed dataset has not been chosen yet.",
+      "example": null
+    }
+  ]
+}
